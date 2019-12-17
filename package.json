@@ -1,0 +1,21 @@
+{
+    "name": "myt003",
+    "version": "1.0.0",
+    "description": "MYtineraries full stack develop",
+    "main": "server.js",
+    "scripts": {
+        "start": "concurrently \"nodemon server.js\" \"cd ./client && npm start\"",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "client": "npm start --prefix client",
+        "server": "nodemon server.js"
+    },
+    "author": "CAB2165",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "concurrently": "^5.0.1",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.8.1"
+    }
+}

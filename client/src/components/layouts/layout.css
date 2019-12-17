@@ -1,0 +1,52 @@
+.linkStyle {
+    color: #fff;
+    text-decoration: none;
+}
+
+.top-menu {
+    background-color: rgb(224, 199, 199);
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button.user-menu {
+    display: block;
+    width: 100%;
+    background-color: white;
+    color: black;
+    border: 2px solid red;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button.user-menu:hover {
+    background-color: red;
+    color: white;
+}
+
+
+/* Container holding the image and the text */
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+/* Centered text */
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
