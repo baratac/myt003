@@ -11,7 +11,12 @@ export class SlideItem extends Component {
                 <Card className="bg-dark text-white m-2 text-center">
                     <Card.Img src={ this.props.image } style={ cityLink } alt="City Favorite" />
                     <Card.ImgOverlay>
-                        <Card.Title className="h6 align-self-center">{this.props.city}</Card.Title>
+                        <Card.Title 
+                          className="h6 align-self-center bg-dark"
+                          style={ {opacity: '0.5'}}
+                        >
+                          {this.props.city}
+                        </Card.Title>
                     </Card.ImgOverlay>
                 </Card>
             </Link>

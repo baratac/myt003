@@ -1,0 +1,6 @@
+.city-list {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(236, 226, 225);
+    overflow-y: scroll;
+}

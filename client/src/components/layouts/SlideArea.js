@@ -10,12 +10,12 @@ export class SlideArea extends Component {
         };
       }
     render() {
-        console.log('SLIDE AREA:', this.props.theTab)
+        // console.log('SLIDE AREA:', this.props.theTab)
         return this.props.theTab.map((item) => (
             <SlideItem 
-              key = { item.id } 
-              id  = { item.id } 
-              city = { item.city }
+              key = { item._id } 
+              id  = { item._id } 
+              city = { item.name }
               image = { item.img } 
             />
         ));

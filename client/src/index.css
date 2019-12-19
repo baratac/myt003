@@ -20,12 +20,13 @@ a {
     max-width: 418px;
     height: 736px;
     margin: auto;
+    overflow: scroll;
     background-color: rgb(186, 196, 169);
 }
 
 .main-area {
-    height: 530px;
-    background-color: rgb(87, 149, 153);
+    height: 630px;
+    background-color: rgb(87, 97, 153);
 }
 
 .cities-area {

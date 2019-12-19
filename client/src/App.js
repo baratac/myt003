@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
+import axios from 'axios'
 // import Sites from './components/SiteList'
 import Header from './components/layouts/Header'
 import Footer from './components/layouts/Footer'
@@ -9,6 +10,7 @@ import Home from './components/pages/LandingPage'
 import Login from './components/pages/LoginPage'
 import Menu from './components/pages/MenuPage'
 import theList from './components/CityList'
+
 
 let TestFooter = withRouter(Footer);
 
@@ -47,7 +49,7 @@ class App extends Component {
   }
 
   slideOption =  (data, ev) => {
-    console.log('UP SLIDE OPT', data, ev.target.id);
+    //console.log('UP SLIDE OPT', data, ev.target.id);
     //console.log(this.state.currentView);
     
     let newPage = this.state.currentPage;
@@ -89,7 +91,9 @@ class App extends Component {
               <Home favorites={ this.state.currentView }/>
             </Route>
             <Route path="/home/:id" component = { Home }></Route>
-            <Route path="/city-list" component = { Cities }></Route>
+            <Route path="/city-list">
+              <Cities theList={ this.state.sites } />
+            </Route>
             <Route exact path="/menu" component = { Menu }></Route>
             <Route exact path="/Login" component = { Login }></Route>
             <Route exact path="/create-account" component = { CreateAccount }></Route>
@@ -98,6 +102,24 @@ class App extends Component {
         </div>
       </Router>
     );
+  }
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        const persons = res.data;
+        this.setState({ persons });
+      })
+    axios.get('http://localhost:5000/cities/all')
+      .then(res => {
+        const newList = res.data;
+        console.log("SHOW RESPONSE:", newList)
+        this.setState(
+          {
+            sites: newList,
+            currentPage: 1,
+            currentView: newList.slice(0, 4)
+          });
+      })
   }
 }
 
