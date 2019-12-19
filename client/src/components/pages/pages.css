@@ -4,3 +4,11 @@
     background-color: rgb(236, 226, 225);
     overflow-y: scroll;
 }
+
+.city-list input {
+    width: 100%;
+    line-height: 1.5;
+    border-style: inset;
+    border: 1px solid cadetblue;
+    box-shadow: cadetblue;
+}
