@@ -21,17 +21,20 @@ a {
     height: 736px;
     margin: auto;
     overflow: scroll;
-    background-color: rgb(186, 196, 169);
+    color: #1A202C;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 2px;
 }
 
 .main-area {
     height: 630px;
-    background-color: rgb(87, 97, 153);
+    background-color: white;
 }
 
 .cities-area {
     height: 250px;
-    background-color: rgb(165, 227, 231);
+    background-color: white;
 }
 
 .slide-area {
@@ -40,6 +43,6 @@ a {
     justify-content: center;
     align-content: center;
     height: 280px;
-    background-color: teal;
+    background-color: white;
     overflow: scroll;
 }

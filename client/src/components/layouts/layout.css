@@ -4,7 +4,7 @@
 }
 
 .top-menu {
-    background-color: rgb(224, 199, 199);
+    background-color: white;
     height: 30px;
     width: 100%;
     display: flex;
@@ -38,7 +38,8 @@ button.user-menu:hover {
 .container {
     position: relative;
     text-align: center;
-    color: white;
+    color: #1A202C;
+    ;
 }
 
 
@@ -53,7 +54,7 @@ button.user-menu:hover {
 
 .city-entry-text {
     color: darkblue;
-    background-color: gray;
+    background-color: white;
     opacity: 0.8;
     border: 1px solid black;
     border-radius: 2px;

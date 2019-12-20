@@ -70,10 +70,10 @@ export class TopMenu extends Component {
                         data-target="#usermenu"
                         data-toggle="collapse"
                     >
-                        <img style={imgUser} src="./assets/user-red.png" alt="User" />
+                        <img style={imgUser} src={require("../../assets/user-red.png")} alt="User" />
                     </button>
                     <Link style={btnMenuStyle} to="/menu">
-                      <img style={ imgMenu } src="./assets/list-view-blue.png" alt="User" />
+                      <img style={ imgMenu } src={require("../../assets/list-view-blue.png")} alt="Menu" />
                     </Link>
 
                 </div>

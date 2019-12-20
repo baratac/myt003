@@ -17,12 +17,13 @@ export class Footer extends Component {
 
   render() {
     let location = this.props.location;
-    //console.log('FOOTER:', location);
+    console.log('FOOTER:', location);
     if (location.pathname !== '/') {
+      console.log('Footer redering home icon....')
       return (
         <div className="mx-auto">
           <Link className="imgStyle" to="/">
-            <Image src="./assets/homeIcon.png"  width={40} height={40}/>
+            <Image src={require("../../assets/homeIcon.png")}  width={40} height={40}/>
           </Link>
         </div>
       );
@@ -34,35 +35,35 @@ export class Footer extends Component {
             style={btnStyle}
             onClick={ this.props.slideOpt.bind(this,'left') }
           >
-            <img id="left-img" style={ imgMenu } src="./assets/arrow-blue-l64.png" alt="Left" />     
+            <img id="left-img" style={ imgMenu } src={require("../../assets/arrow-blue-l64.png")} alt="Left" />     
           </button>
           <button 
             id="page1-btn"
             style={btnStyle}
             onClick={ this.props.slideOpt.bind(this,1)}
           >
-            <img id="page1-img" style={ imgMenu } src="./assets/circle-blue-64.png" alt="Page 1" />     
+            <img id="page1-img" style={ imgMenu } src={require("../../assets/circle-blue-64.png")} alt="Page 1" />     
           </button>
           <button 
             id="page2-btn"
             style={btnStyle}
             onClick={ this.props.slideOpt.bind(this,2) }
           >
-            <img id="page2-img" style={ imgMenu } src="./assets/circle-blue-64.png" alt="Page 2" />     
+            <img id="page2-img" style={ imgMenu } src={require("../../assets/circle-blue-64.png")} alt="Page 2" />     
           </button>
           <button 
             id="page3-btn"
             style={btnStyle}
             onClick={ this.props.slideOpt.bind(this,3) }
           >
-            <img id="page3-img" style={ imgMenu } src="./assets/circle-blue-64.png" alt="Page 3" />     
+            <img id="page3-img" style={ imgMenu } src={require("../../assets/circle-blue-64.png")} alt="Page 3" />     
           </button>
           <button 
             id="right-btn"
             style={btnStyle}
             onClick={ this.props.slideOpt.bind(this,'right') }
           >
-            <img id="right-img" style={ imgMenu } src="./assets/arrow-blue-r64.png" alt="right" />     
+            <img id="right-img" style={ imgMenu } src={require("../../assets/arrow-blue-r64.png")} alt="right" />     
           </button>
         </div>
       );

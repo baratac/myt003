@@ -7,7 +7,7 @@ import './layout.css'
 export class SlideItem extends Component {
     render() {
         return (
-             <Link to={"/city-list/" + this.props.id} className="d-block">
+             <Link to={"/city/" + this.props.id} className="d-block">
                 <Card className="bg-dark text-white m-2 text-center">
                     <Card.Img src={ this.props.image } style={ cityLink } alt="City Favorite" />
                     <Card.ImgOverlay>

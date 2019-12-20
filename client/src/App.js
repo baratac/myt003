@@ -10,6 +10,7 @@ import Home from './components/pages/LandingPage'
 import Login from './components/pages/LoginPage'
 import Menu from './components/pages/MenuPage'
 import theList from './components/CityList'
+import City from './components/pages/City'
 
 
 let TestFooter = withRouter(Footer);
@@ -90,7 +91,7 @@ class App extends Component {
             <Route exact path="/">
               <Home favorites={ this.state.currentView }/>
             </Route>
-            <Route path="/home/:id" component = { Home }></Route>
+            <Route path="/city/:id" component = { City }></Route>
             <Route path="/city-list">
               <Cities theList={ this.state.sites } />
             </Route>
