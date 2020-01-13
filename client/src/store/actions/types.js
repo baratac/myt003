@@ -1,0 +1,9 @@
+// Locals Management Actions
+const FETCH_CITIES = 100
+const GET_CITY = 101
+const UPDATE_VIEW = 102
+// USER MANAGEMENT Actions
+const CHECK_USER = 200
+const UPDATE_USER = 201
+
+export { FETCH_CITIES, GET_CITY, UPDATE_VIEW, CHECK_USER, UPDATE_USER};

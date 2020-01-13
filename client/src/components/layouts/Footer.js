@@ -17,9 +17,9 @@ export class Footer extends Component {
 
   render() {
     let location = this.props.location;
-    console.log('FOOTER:', location);
+    // console.log('FOOTER:', location);
     if (location.pathname !== '/') {
-      console.log('Footer redering home icon....')
+      // console.log('Footer redering home icon....')
       return (
         <div className="mx-auto">
           <Link className="imgStyle" to="/">

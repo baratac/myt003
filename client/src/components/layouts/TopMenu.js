@@ -70,10 +70,10 @@ export class TopMenu extends Component {
                         data-target="#usermenu"
                         data-toggle="collapse"
                     >
-                        <img style={imgUser} src={require("../../assets/user-red.png")} alt="User" />
+                        <img style={imgUser} src={require("../../assets/user-red-02.png")} alt="User" />
                     </button>
                     <Link style={btnMenuStyle} to="/menu">
-                      <img style={ imgMenu } src={require("../../assets/list-view-blue.png")} alt="Menu" />
+                      <img style={ imgMenu } src={require("../../assets/menu-blue-64.png")} alt="Menu" />
                     </Link>
 
                 </div>
@@ -101,9 +101,10 @@ export class TopMenu extends Component {
 }
 
 const imgUser = {
-    width: '25px',
-    height: '25px',
+    width: '35px',
+    height: '35px',
     overflow: 'hidden',
+    border: '1.5px solid red',
     borderRadius: '50%',
     backgroundColor: 'transparent'
 }

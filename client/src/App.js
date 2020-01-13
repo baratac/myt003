@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+
+import { connect } from 'react-redux'
+import { fetchCities, updateView } from './store/actions/citiesActions'
+
 // import Sites from './components/SiteList'
 import Header from './components/layouts/Header'
 import Footer from './components/layouts/Footer'
@@ -9,7 +14,6 @@ import CreateAccount from './components/pages/CreateAcountPage'
 import Home from './components/pages/LandingPage'
 import Login from './components/pages/LoginPage'
 import Menu from './components/pages/MenuPage'
-import theList from './components/CityList'
 import City from './components/pages/City'
 
 
@@ -17,14 +21,6 @@ let TestFooter = withRouter(Footer);
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      sites: theList,
-      currentPage: 1,
-      currentView: theList.slice(0, 4)
-    };
-  }
 
  toggleLikes = (id) => {
     this.setState(
@@ -53,7 +49,7 @@ class App extends Component {
     //console.log('UP SLIDE OPT', data, ev.target.id);
     //console.log(this.state.currentView);
     
-    let newPage = this.state.currentPage;
+    let newPage = this.props.currentPage;
     if (isNaN(data)) {
       if (data === 'left') { // Scroll Left
         newPage--;
@@ -68,7 +64,7 @@ class App extends Component {
       }
     }
     const start = (newPage - 1) * 4;
-    const newView = this.state.sites.slice(start, start + 4)
+    const newView = this.props.sites.slice(start, start + 4)
     // console.log('PAGE:', newPage, newView);
     // Alternative set state setup....
     /*
@@ -76,10 +72,10 @@ class App extends Component {
       return { currentPage: newPage, currentView: newView }
     });
     */
-    this.setState({
-      currentPage: newPage,
-      currentView: newView
-    }) 
+   this.props.updateView({
+    currentPage: newPage,
+    currentView: newView
+    });
   }
 
   render () {
@@ -89,11 +85,11 @@ class App extends Component {
           <Header />
           <div className="main-area">
             <Route exact path="/">
-              <Home favorites={ this.state.currentView }/>
+              <Home favorites={ this.props.currentView }/>
             </Route>
             <Route path="/city/:id" component = { City }></Route>
             <Route path="/city-list">
-              <Cities theList={ this.state.sites } />
+              <Cities theList={ this.props.sites } />
             </Route>
             <Route exact path="/menu" component = { Menu }></Route>
             <Route exact path="/Login" component = { Login }></Route>
@@ -110,21 +106,23 @@ class App extends Component {
         const persons = res.data;
         this.setState({ persons });
       })
-    axios.get('http://localhost:5000/cities/all')
-      .then(res => {
-        const newList = res.data;
-        console.log("SHOW RESPONSE:", newList)
-        this.setState(
-          {
-            sites: newList,
-            currentPage: 1,
-            currentView: newList.slice(0, 4)
-          });
-      })
+      this.props.fetchCities();
   }
 }
 
-export default App;
+App.propTypes = {
+  fetchCities: PropTypes.func.isRequired,
+  updateView: PropTypes.func.isRequired,
+  cities: PropTypes.object
+}
+
+const mapStateToProps = state => ({
+  sites: state.cities.sites,
+  currentPage: state.cities.currentPage,
+  currentView: state.cities.currentView
+})
+
+export default connect(mapStateToProps, { fetchCities, updateView })(App);
 /*
             <Sites 
               content = { this.state.sites } 

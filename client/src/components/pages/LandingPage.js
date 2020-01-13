@@ -11,7 +11,7 @@ export class LandingPage extends Component {
         // console.log(this.props);
         return (
         <div >
-        <div style={{backgroundColor: '#fff'}}>
+          <div style={{backgroundColor: '#fff'}}>
             <Image src={require("../../assets/MYtineraryLogo.png")} style={ imgStyle } />
           </div>
           <div className="cities-area d-flex justify-content-center align-content-center">

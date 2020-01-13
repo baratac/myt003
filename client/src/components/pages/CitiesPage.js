@@ -8,6 +8,7 @@ function CitiesPage(props) {
     const [srchCity, setSrchCity] = useState('')
 
     useEffect(() => {
+        console.log("THE LIST:", props.theList)
         setCityList(props.theList)
     }, [props.theList]);
 

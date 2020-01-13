@@ -29,6 +29,27 @@ router.get('/all',
             .catch(err => console.log(err));
     });
 
+    //this is how you implement a city route by specific city
+    router.get('/name/:name',
+	    (req, res) => {
+  		    let cityRequested = req.params.name;
+  		    cityModel.findOne({ name: cityRequested })
+			    .then(city => {
+				    res.send(city)
+		    	})
+			    .catch(err => console.log(err));
+    });
+
+    router.get('/id/:id',
+	    (req, res) => {
+  		    let cityRequested = req.params.id;
+  		    cityModel.findOne({ _id: cityRequested })
+			    .then(city => {
+				    res.send(city)
+		    	})
+			    .catch(err => console.log(err));
+    });
+
     router.get('/update',
     (req, res) => {
         cityModel.insertMany(data)

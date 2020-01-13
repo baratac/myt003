@@ -1,0 +1,73 @@
+[{
+        "title": "Itinerary 1",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec772b",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 2",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec772b",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 3",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec772c",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 4",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec772c",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 5",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec772c",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 6",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec7733",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 7",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec7733",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 8",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec7730",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    },
+    {
+        "title": "Itinerary 9",
+        "profilePic": "",
+        "cityId": "5dfa3a8adf2968569cec7730",
+        "rating": "3",
+        "duration": "1 Hour",
+        "price": "10"
+    }
+]
