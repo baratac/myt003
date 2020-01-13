@@ -14,7 +14,7 @@ router.param('it_id', function (req, res, next, itId) {
 
   router.route('/:it_id')
     .get( function(req, res, next) {
-        const query = actvtModel.findOne({ itId: req.itineraryId });
+        const query = actvtModel.find({ itId: req.itineraryId });
         query.select('name img');
 
         query.exec((err, activity) => {
