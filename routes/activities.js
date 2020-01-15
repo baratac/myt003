@@ -26,7 +26,7 @@ router.param('it_id', function (req, res, next, itId) {
                 // console.log('ACTIVITY GET Ok no data: ')
                 res.status(404).send('No Data Found');
               } else {
-                console.log('ACTIVITY GET Ok: ', activity)
+                //console.log('ACTIVITY GET Ok: ', activity)
                 res.send(activity);
               }
             }

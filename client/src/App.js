@@ -15,6 +15,7 @@ import Home from './components/pages/LandingPage'
 import Login from './components/pages/LoginPage'
 import Menu from './components/pages/MenuPage'
 import City from './components/pages/City'
+import CityItinerary from './components/pages/CityItinerary'
 
 
 let TestFooter = withRouter(Footer);
@@ -88,6 +89,7 @@ class App extends Component {
               <Home favorites={ this.props.currentView }/>
             </Route>
             <Route path="/city/:id" component = { City }></Route>
+            <Route path="/itinerary/:id" component = { CityItinerary }></Route>
             <Route path="/city-list">
               <Cities theList={ this.props.sites } />
             </Route>

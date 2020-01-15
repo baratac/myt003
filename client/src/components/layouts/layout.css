@@ -77,3 +77,17 @@ button.user-menu:hover {
     border-radius: 2px;
     overflow: hidden;
 }
+
+.activity-slide {
+    width: 60px;
+    height: 60px;
+    display: block;
+}
+
+.slide-container {
+    flex-direction: column;
+    max-width: 418px;
+    height: 100px;
+    margin: auto;
+    background-color: inherit;
+}
