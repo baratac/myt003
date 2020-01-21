@@ -30,6 +30,7 @@ app.use('/cities', require('./routes/cities'))
 app.use('/itineraries', require('./routes/itineraries'))
 app.use('/actvts', require('./routes/activities'))
 app.use('/comments', require('./routes/comments'))
+app.use('/users', require('./routes/users'))
 
 // ----------------------------------------
 

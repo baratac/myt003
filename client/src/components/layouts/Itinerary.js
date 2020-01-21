@@ -5,12 +5,17 @@ import './layout.css'
 function ItineraryBox (props) {
         
         let x = 1;
-        if (props.item.price < 100) {
-           x = Math.ceil(props.item.price/20);
-        } else {
-            x = 5;
+        let priceTag = props.item.price;
+
+        if (!isNaN(Number(props.item.price))) {
+            if (props.item.price < 100) {
+                x = Math.ceil(props.item.price/20);
+             } else {
+                 x = 5;
+             }
+             priceTag = '$'.repeat(x);
         }
-        const priceTag = '$'.repeat(x);
+
         return (
             <div className="container" style={cityLink}>
                 <div className="row">

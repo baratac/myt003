@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './layout.css'
 
 function ActivityItem(props) {
-    console.log('IMAGE:', "./assets/" + props.item.img )
+    // console.log('IMAGE:', "./assets/" + props.item.img )
     return (
         <Card className="bg-dark text-white m-2 text-center">
             <Card.Img src={ "/assets/" + props.item.img } style={ cityLink } alt="Activity" />

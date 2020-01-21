@@ -18,9 +18,10 @@ router.get('/all',
                 res.send(files)
             })
             .catch(err => console.log(err));
-    });
+    }
+);
 
-    router.get('/mall',
+router.get('/mall',
     (req, res) => {
         myCityModel.find({})
             .then(files => {

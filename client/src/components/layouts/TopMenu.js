@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Collapse } from 'react-bootstrap'
 import { Redirect, Link } from 'react-router-dom'
+import { signOut } from '../../store/actions/usersActions'
+import PropTypes from 'prop-types'
 import './layout.css'
 
 
@@ -51,11 +54,55 @@ export class TopMenu extends Component {
             redirectPath: "/create-account",
             redirect: true
           });
+        } else {
+          this.props.signOut();
+          this.setState({
+            redirectPath: "/",
+            redirect: true
+          });
         }
         this.setState({
             openUserMenu: closeIt
           })
-    } 
+    }
+
+    menuShow = () => {
+      console.log('Session Status:', this.props.sessionActive)
+      if (this.props.sessionActive) {
+        return (
+          <div>
+              <p>USER: { this.props.currentUser.name }</p>
+              <p>EMAIL: { this.props.currentUser.email }</p>
+              <button 
+                id="logout-btn"
+                className="user-menu btn mt-2"
+                onClick={ this.menuOption }
+              >
+                LogOUT
+              </button>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+              <button 
+                id="login-btn"
+                className="user-menu btn mt-2"
+                onClick={ this.menuOption }
+              >
+                Login
+              </button>
+              <button 
+                id="create-btn"
+                className="user-menu btn mt-2"
+                onClick={ this.menuOption }
+              >
+                Create Account
+              </button>
+          </div>
+        );
+      }
+    }
 
 
     render() {
@@ -70,7 +117,11 @@ export class TopMenu extends Component {
                         data-target="#usermenu"
                         data-toggle="collapse"
                     >
-                        <img style={imgUser} src={require("../../assets/user-red-02.png")} alt="User" />
+                      { this.props.sessionActive ? 
+                        (<img style={imgUserIn} src={require("../../assets/user-blue-02.png")} alt="User" />) :
+                        <img style={imgUserOut} src={require("../../assets/user-red-02.png")} alt="User" />
+                      }
+                        
                     </button>
                     <Link style={btnMenuStyle} to="/menu">
                       <img style={ imgMenu } src={require("../../assets/menu-blue-64.png")} alt="Menu" />
@@ -79,20 +130,7 @@ export class TopMenu extends Component {
                 </div>
                 <Collapse in={ this.state.openUserMenu } timeout={ 1500 }>
                   <div id="usermenu" onChange={ this.collapseState } className="collapse mt-2">
-                    <button 
-                      id="login-btn"
-                      className="user-menu btn mt-2"
-                      onClick={ this.menuOption }
-                    >
-                      Login
-                    </button>
-                    <button 
-                      id="create-btn"
-                      className="user-menu btn mt-2"
-                      onClick={ this.menuOption }
-                    >
-                      Create Account
-                    </button>
+                    { this.menuShow() }
                   </div>
                 </Collapse>
             </div>
@@ -100,14 +138,36 @@ export class TopMenu extends Component {
     }
 }
 
-const imgUser = {
+TopMenu.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  sessionActive: PropTypes.bool.isRequired,
+  signOut: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+  currentUser: state.users.currentUser,
+  sessionActive: state.users.sessionActive
+})
+
+
+const imgUserIn = {
     width: '35px',
     height: '35px',
     overflow: 'hidden',
-    border: '1.5px solid red',
+    border: '1.5px solid blue',
     borderRadius: '50%',
     backgroundColor: 'transparent'
 }
+
+const imgUserOut = {
+  width: '35px',
+  height: '35px',
+  overflow: 'hidden',
+  border: '1.5px solid red',
+  borderRadius: '50%',
+  backgroundColor: 'transparent'
+}
+
 
 const imgMenu = {
     width: '25px',
@@ -126,6 +186,7 @@ const btnStyle = {
     cursor: 'pointer',
   };
 
+
   const btnMenuStyle = {
     width: '30px',
     height: '30px',
@@ -136,5 +197,5 @@ const btnStyle = {
     cursor: 'pointer',
   };
 
-export default TopMenu;
+export default connect(mapStateToProps, { signOut })(TopMenu);
 
