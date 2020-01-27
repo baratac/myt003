@@ -104,6 +104,17 @@ export class TopMenu extends Component {
       }
     }
 
+    userPicture = () => {
+      if (this.props.sessionActive) {
+        if (this.props.currentUser.img) {
+          return (<img style={imgUserIn} src={this.props.currentUser.img} alt="User" />)
+        } else {
+          return (<img style={imgUserIn} src={require("../../assets/user-blue-02.png")} alt="User" />);
+        }
+      } else {
+         return (<img style={imgUserOut} src={require("../../assets/user-red-02.png")} alt="User" />);
+      }                 
+    }
 
     render() {
         return (
@@ -117,11 +128,7 @@ export class TopMenu extends Component {
                         data-target="#usermenu"
                         data-toggle="collapse"
                     >
-                      { this.props.sessionActive ? 
-                        (<img style={imgUserIn} src={require("../../assets/user-blue-02.png")} alt="User" />) :
-                        <img style={imgUserOut} src={require("../../assets/user-red-02.png")} alt="User" />
-                      }
-                        
+                      { this.userPicture() }
                     </button>
                     <Link style={btnMenuStyle} to="/menu">
                       <img style={ imgMenu } src={require("../../assets/menu-blue-64.png")} alt="Menu" />

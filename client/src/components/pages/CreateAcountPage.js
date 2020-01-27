@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { createUser } from '../../store/actions/usersActions'
+import { signIn } from '../../store/actions/usersActions'
 
 import './pagesDesign.css'
 
@@ -47,7 +47,7 @@ const CreateAcountPage = () => {
                     axios.post('http://localhost:5000/users/create', theData)
                     .then(res => {
                         const newUser = res.data;
-                        dispatch(createUser(newUser));
+                        dispatch(signIn(newUser));
                         console.log("Create User Ok:", newUser);
                         submitMessage = 'Create Account Successful';
                         resetForm();

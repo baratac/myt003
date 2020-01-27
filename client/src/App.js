@@ -4,7 +4,8 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
-import { fetchCities, updateView } from './store/actions/citiesActions'
+import { fetchCities, updateView } from './store/actions/citiesActions';
+import { signIn } from './store/actions/usersActions';
 
 // import Sites from './components/SiteList'
 import Header from './components/layouts/Header'
@@ -22,29 +23,6 @@ let TestFooter = withRouter(Footer);
 
 class App extends Component {
 
-
- toggleLikes = (id) => {
-    this.setState(
-      {
-        sites: this.state.sites.map((item) => {
-                    if (id === item.id) {
-                      item.like = !item.like;
-                    }
-                    return item;
-                  })
-      }
-    );
-    // console.log('ID:', id);
-  }
-
-  delSite = (id) => {
-    this.setState(
-      {
-        sites: this.state.sites.filter((item) => id !== item.id)
-      }
-    );
-    //console.log('DEL ID:', id);
-  }
 
   slideOption =  (data, ev) => {
     //console.log('UP SLIDE OPT', data, ev.target.id);
@@ -103,18 +81,20 @@ class App extends Component {
     );
   }
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => {
-        const persons = res.data;
-        this.setState({ persons });
-      })
-      this.props.fetchCities();
+    axios.defaults.baseURL = 'http://localhost:5000';
+    const userToken = localStorage.getItem('userToken');
+    if (userToken != null) {
+        this.props.signIn({token: userToken});
+    }
+    console.log('Token is:', userToken)
+    this.props.fetchCities();
   }
 }
 
 App.propTypes = {
   fetchCities: PropTypes.func.isRequired,
   updateView: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
   cities: PropTypes.object
 }
 
@@ -124,7 +104,7 @@ const mapStateToProps = state => ({
   currentView: state.cities.currentView
 })
 
-export default connect(mapStateToProps, { fetchCities, updateView })(App);
+export default connect(mapStateToProps, { fetchCities, updateView, signIn })(App);
 /*
             <Sites 
               content = { this.state.sites } 
