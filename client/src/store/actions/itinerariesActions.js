@@ -4,7 +4,7 @@ import {UPDATE_ITINERARIES, UPDATE_IT_ACTIVITIES, UPDATE_IT_COMMENTS} from './ty
 
 export const getItineraries = (cityId) => dispatch => {
     // console.log('ACTION GET IT for city:', cityId);
-  axios.get('http://localhost:5000/itineraries/' + cityId)
+  axios.get('/itineraries/' + cityId)
     .then(res => {
         const newList = res.data;
         // console.log("Action Get city Itineraries:", newList)
@@ -16,7 +16,7 @@ export const getItineraries = (cityId) => dispatch => {
 }
 
 export const getItActivities = (itineraryId) => dispatch => {
-    axios.get('http://localhost:5000/actvts/' + itineraryId)
+    axios.get('/actvts/' + itineraryId)
     .then(res => {
         const newList = res.data;
         // console.log("Action Get Itinerary Activities:", newList)
@@ -28,7 +28,7 @@ export const getItActivities = (itineraryId) => dispatch => {
 };
 
 export const getItComments = (itineraryId) => dispatch => {
-    axios.get('http://localhost:5000/comments/' + itineraryId)
+    axios.get('/comments/' + itineraryId)
     .then(res => {
         const newList = res.data;
         console.log("Action Get Itinerary Comments:", newList)

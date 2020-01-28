@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import {CREATE_USER, SIGN_IN, GET_USERS_DATA, SIGN_OUT} from './types';
+import {CREATE_USER, SIGN_IN, GET_USERS_DATA, SIGN_OUT, UPDATE_FAVORITES} from './types';
 
 export const fetchUsers = () => dispatch => {
   axios.get('/users/fetch?name=all')
@@ -13,6 +13,20 @@ export const fetchUsers = () => dispatch => {
         });
     });
 }
+
+export const fetchFavorites = () => (dispatch) => {
+    axios.get('/favorites')
+      .then(res => {
+          const newList = res.data;
+          // console.log("Action Fetch all users:", newList)
+          dispatch({
+              type: UPDATE_FAVORITES,
+              payload: newList
+          });
+      }
+      
+      );
+  }
 
 export const createUser = (userData) => dispatch => {
     dispatch({

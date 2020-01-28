@@ -26,7 +26,7 @@ function ItineraryFull (props) {
                 <div className="col-3" style={profileBox}>
 
                 </div>
-                <div className="col-9 text-left" style={infoBox}>
+                <div className="col-9 text-left info-box">
                     <div>
                         {props.item.title}  
                     </div>
@@ -117,9 +117,6 @@ const cityLink = {
       height: '80px',
       backgroundColor: 'blue'
   }
-  const infoBox = {
-    height: '80px',
-    backgroundColor: 'red'
-}
+
 
 export default ItineraryFull

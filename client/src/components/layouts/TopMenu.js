@@ -67,7 +67,7 @@ export class TopMenu extends Component {
     }
 
     menuShow = () => {
-      console.log('Session Status:', this.props.sessionActive)
+      // console.log('Session Status:', this.props.sessionActive)
       if (this.props.sessionActive) {
         return (
           <div>

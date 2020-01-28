@@ -1,8 +1,10 @@
 const express = require('express')
+const passport = require('passport')
 const itineraryModel = require('../models/itineraryModel')
-const data = require('../iList.json')
+
 
 const router = express.Router()
+const checkToken = require('../midleware/verifyToken')
 
 router.get('/itest/', (req,res) => {
   res.send({msg: 'Itineraries test route'})
@@ -10,7 +12,7 @@ router.get('/itest/', (req,res) => {
 
 /*-- get all itineraries --*/
 
-router.get('/:city_id',
+router.get('/:city_id',checkToken, passport.authenticate("jwt", { session: false }),
     (req, res) => {
         console.log("ITIN City: ", req.params.city_id)
         itineraryModel.find({ cityId: req.params.city_id})
@@ -20,6 +22,21 @@ router.get('/:city_id',
             .catch(err => console.log(err));
     });
 
+
+router.put('/likes',checkToken, passport.authenticate("jwt", { session: false }),
+    (req,res ) => {
+        itineraryModel.update({_id: req.body.id}, {rating: req.body.likes}).then(
+            result => {
+                console.log('UPDATE Itinerary', result);
+                res.send(result);
+            },
+            err => {
+                console.log('Update Itinerary error', err);
+                res.status(400).send(err);
+            }
+        )
+    }
+);
 /*
 router.get('/it-all',
     (req, res) => {

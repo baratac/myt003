@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 import { fetchCities, updateView } from './store/actions/citiesActions';
-import { signIn } from './store/actions/usersActions';
+import { signIn, fetchFavorites } from './store/actions/usersActions';
 
 // import Sites from './components/SiteList'
 import Header from './components/layouts/Header'
@@ -84,15 +84,20 @@ class App extends Component {
     axios.defaults.baseURL = 'http://localhost:5000';
     const userToken = localStorage.getItem('userToken');
     if (userToken != null) {
-        this.props.signIn({token: userToken});
+        this.props.signIn({token: userToken}).then(
+          res => {
+            this.props.fetchCities();
+            this.props.fetchFavorites();
+          }
+        );
     }
-    console.log('Token is:', userToken)
-    this.props.fetchCities();
+    // console.log('Token is:', userToken)
   }
 }
 
 App.propTypes = {
   fetchCities: PropTypes.func.isRequired,
+  fetchFavorites: PropTypes.func.isRequired,
   updateView: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   cities: PropTypes.object
@@ -104,7 +109,7 @@ const mapStateToProps = state => ({
   currentView: state.cities.currentView
 })
 
-export default connect(mapStateToProps, { fetchCities, updateView, signIn })(App);
+export default connect(mapStateToProps, { fetchCities, fetchFavorites, updateView, signIn })(App);
 /*
             <Sites 
               content = { this.state.sites } 

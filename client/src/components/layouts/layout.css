@@ -91,3 +91,30 @@ button.user-menu:hover {
     margin: auto;
     background-color: inherit;
 }
+
+.info-box {
+    position: relative;
+    height: 80px;
+    background-color: rgb(243, 233, 233)
+}
+
+.img-like {
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.btn-like {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    padding: 2px 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}

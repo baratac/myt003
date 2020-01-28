@@ -8,6 +8,7 @@ const blSchema = new mongoose.Schema({
     }
   },
   { 
+    timestamps: { createdAt: 'created_at' },
     collection : 'ubBlackList'
   }
 )

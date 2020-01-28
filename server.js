@@ -12,6 +12,7 @@ const itinerariesRoutes = require('./routes/itineraries');
 const activitiesRoutes = require('./routes/activities');
 const commentsRoutes = require('./routes/comments');
 const usersRoutes = require('./routes/users');
+const favoritesRoutes = require('./routes/favorites');
 
 // ----------------------------------------
 
@@ -54,6 +55,7 @@ app.use('/itineraries', itinerariesRoutes)
 app.use('/actvts', activitiesRoutes);
 app.use('/comments', commentsRoutes);
 app.use('/users', usersRoutes);
+app.use('/favorites', favoritesRoutes);
 
 // ----------------------------------------
 

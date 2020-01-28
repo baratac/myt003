@@ -10,6 +10,9 @@ const CREATE_USER = 200
 const SIGN_IN = 201
 const GET_USERS_DATA = 202
 const SIGN_OUT = 203
+const UPDATE_FAVORITES = 204
+const ADD_FAVORITE = 205
+const REM_FAVORITE = 206
 
 export { 
     FETCH_CITIES, 
@@ -21,5 +24,8 @@ export {
     CREATE_USER,
     SIGN_IN,
     GET_USERS_DATA,
-    SIGN_OUT
+    SIGN_OUT,
+    UPDATE_FAVORITES,
+    ADD_FAVORITE,
+    REM_FAVORITE
 };
