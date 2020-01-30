@@ -1,12 +1,14 @@
 import React  from 'react'
 import Carousel from "react-multi-carousel";
+import Comments from "./Comments"
 import "react-multi-carousel/lib/styles.css";
 
 import ActivityItem from './ActivityItem'
 import './layout.css'
 
 function ItineraryFull (props) {
-        //console.log(props.activities.length)
+    
+    console.log(props.item)
     let x = 1;
     let priceTag = props.item.price;
 
@@ -16,8 +18,10 @@ function ItineraryFull (props) {
         } else {
             x = 5;
         }
-        priceTag = '$'.repeat(x);
+        priceTag = '€'.repeat(x);
     }
+
+
 
     let theList = props.activities.map((item) => (<ActivityItem item={item} key = { item._id } />))
     return (
@@ -46,58 +50,61 @@ function ItineraryFull (props) {
                     </div>
                 </div>
             </div>
-            <Carousel
-                additionalTransfrom={0}
-                arrows={true}
-                autoPlaySpeed={3000}
-                centerMode={true}
-                className=""
-                containerClass="slide-container"
-                dotListClass=""
-                draggable
-                ssr={false}
-                focusOnSelect={false}
-                infinite
-                itemClass="activity-slide"
-                keyBoardControl
-                minimumTouchDrag={80}
-                renderButtonGroupOutside={false}
-                renderDotsOutside={false}
-                partialVisible={false}
-                responsive={{
-                    desktop: {
+            { theList.length > 0 ? 
+                <Carousel
+                    additionalTransfrom={0}
+                    arrows={true}
+                    autoPlaySpeed={3000}
+                    centerMode={true}
+                    className=""
+                    containerClass="slide-container"
+                    dotListClass=""
+                    draggable
+                    ssr={false}
+                    focusOnSelect={false}
+                    infinite
+                    itemClass="activity-slide"
+                    keyBoardControl
+                    minimumTouchDrag={80}
+                    renderButtonGroupOutside={false}
+                    renderDotsOutside={false}
+                    partialVisible={false}
+                    responsive={{
+                        desktop: {
+                                breakpoint: {
+                                max: 3000,
+                                min: 1024
+                            },
+                            items: 1,
+                            partialVisibilityGutter: 40
+                        },
+                        mobile: {
                             breakpoint: {
-                            max: 3000,
-                            min: 1024
+                                max: 464,
+                                min: 0
+                            },
+                            items: 2,
+                            partialVisibilityGutter: 30
                         },
-                        items: 1,
-                        partialVisibilityGutter: 40
-                    },
-                    mobile: {
-                        breakpoint: {
-                            max: 464,
-                            min: 0
-                        },
-                        items: 2,
-                        partialVisibilityGutter: 30
-                    },
-                    tablet: {
-                        breakpoint: {
-                            max: 1024,
-                            min: 464
-                        },
-                        items: 1,
-                        partialVisibilityGutter: 30
-                    }
-                }}
-                deviceType = 'mobile'
-                showDots={false}
-                sliderClass=""
-                slidesToSlide={1}
-                swipeable
-            >
-              {theList}
-            </Carousel>
+                        tablet: {
+                            breakpoint: {
+                                max: 1024,
+                                min: 464
+                            },
+                            items: 1,
+                            partialVisibilityGutter: 30
+                        }
+                    }}
+                    deviceType = 'mobile'
+                    showDots={false}
+                    sliderClass=""
+                    slidesToSlide={1}
+                    swipeable
+                >
+                {theList}
+                </Carousel>
+            : null}
+            <Comments itId={ props.item._id } />
         </div>
     );
     

@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import PropTypes from 'prop-types'
+import JavascriptTimeAgo from 'javascript-time-ago'
+ 
+// The desired locales.
+import en from 'javascript-time-ago/locale/en'
+import pt from 'javascript-time-ago/locale/pt'
+ 
 
 import { connect } from 'react-redux'
 import { fetchCities, updateView } from './store/actions/citiesActions';
@@ -18,6 +24,9 @@ import Menu from './components/pages/MenuPage'
 import City from './components/pages/City'
 import CityItinerary from './components/pages/CityItinerary'
 
+// Initialize the desired locales.
+JavascriptTimeAgo.locale(en)
+JavascriptTimeAgo.locale(pt)
 
 let TestFooter = withRouter(Footer);
 

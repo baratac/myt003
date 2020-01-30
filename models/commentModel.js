@@ -14,8 +14,12 @@ const commentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    usrId: {
+    userName: {
         type: String
+    },
+    userPic: {
+        type: String,
+        default: ''
     },
     itId: {
         type: String,

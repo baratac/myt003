@@ -118,3 +118,10 @@ button.user-menu:hover {
     border-radius: 50%;
     cursor: pointer;
 }
+
+.img-comment {
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    background-color: transparent;
+}

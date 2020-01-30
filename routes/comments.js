@@ -33,8 +33,8 @@ router.param('it_id', function (req, res, next, itId) {
         }
         // console.log('FILTER:', srchFilter);
 
-        const query = comModel.find(srchFilter);
-        //query.select('name img');
+        const query = comModel.find(srchFilter).sort({ createdAt: -1 });
+        query.select('message createdAt userName userPic');
 
         query.exec((err, data) => {
             if (err) {
@@ -43,7 +43,7 @@ router.param('it_id', function (req, res, next, itId) {
             } else {
               if (data == null || data.length === 0) {
                 // console.log('ACTIVITY GET Ok no data: ')
-                res.status(404).send('No Data Found');
+                res.status(data);
               } else {
                 console.log('ACTIVITY GET Ok: ', data)
                 res.send(data);
