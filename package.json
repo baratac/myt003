@@ -4,10 +4,10 @@
     "description": "MYtineraries full stack develop",
     "main": "server.js",
     "scripts": {
-        "start": "concurrently \"nodemon server.js\" \"cd ./client && npm start\"",
+        "start": "concurrently \"nodemon -r dotenv/config server.js\" \"cd ./client && npm start\"",
         "test": "echo \"Error: no test specified\" && exit 1",
         "client": "npm start --prefix client",
-        "server": "nodemon server.js"
+        "server": "node -r dotenv/config server.js"
     },
     "author": "CAB2165",
     "license": "ISC",
@@ -27,5 +27,8 @@
         "passport": "^0.4.1",
         "passport-google-oauth20": "^2.0.0",
         "passport-jwt": "^4.0.0"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0"
     }
 }

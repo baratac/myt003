@@ -104,3 +104,39 @@
 
 
 background-color: rgba(180, 210, 219, .55);
+
+
+
+<div className="row bg-indigo-100">
+                <div className="profile-box col-3 px-2 mx-auto">
+                    <div className="d-flex flex-column justify-content-center">
+                        <img src={ profileData.pic } className="img-it mx-auto" alt="User Pic" />
+                        <small className="mx-auto text-gray-600">{ profileData.name }</small>
+                    </div>
+                </div>
+                <div className="col-9 text-left info-box">
+                    <div className="flex-col flex-wrap content-end h-full">
+                        <div className="mt-2 mb-1 text-gray-800"> 
+                            {props.item.title}  
+                        </div>
+                        <div>
+                            <div className="row text-gray-500">
+                                <div className="col small">
+                                    Likes: { props.item.rating }
+                                </div>
+                                <div className="col small">
+                                    { props.item.duration }
+                                </div>
+                                <div className="col small">
+                                        Cost: { priceTag }
+                                </div>
+                            </div>
+                        </div>
+                        {props.item.hashTags.length > 0 ? 
+                            (<div>
+                                {props.item.hashTags.map((tag, idx) => (<small key={idx}>#{tag} </small>))}
+                            </div>) : null
+                        }
+                    </div>
+                </div>
+            </div>
