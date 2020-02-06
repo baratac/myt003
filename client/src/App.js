@@ -75,6 +75,7 @@ class App extends Component {
 
   render () {
     console.log('APp Component Rendering...');
+    axios.defaults.baseURL = 'https://myt-cab2165.herokuapp.com';
     return (
       <Router>
         { this.state.reloading ? <Redirect to="/" /> : 
@@ -103,7 +104,7 @@ class App extends Component {
     console.log("App component will mount...");
     this.setState({reloading: false});
     sessionStorage.reload = true;
-    axios.defaults.baseURL = 'http://localhost:5000';
+    // axios.defaults.baseURL = 'http://localhost:5000';//'https://myt-cab2165.herokuapp.com'; // 'http://localhost:5000';
     const userToken = localStorage.getItem('userToken');
     if (userToken != null) {
         this.props.signIn({token: userToken}).then(

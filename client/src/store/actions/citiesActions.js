@@ -3,7 +3,7 @@ import axios from 'axios'
 import {FETCH_CITIES, GET_CITY, UPDATE_VIEW} from './types';
 
 export const fetchCities = () => dispatch => {
-  axios.get('http://localhost:5000/cities/all')
+  axios.get('https://myt-cab2165.herokuapp.com/cities/all')
     .then(res => {
         const newList = res.data;
         // console.log("Action Fetch Cities:", newList)

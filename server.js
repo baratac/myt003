@@ -58,7 +58,7 @@ app.use('/users', usersRoutes);
 app.use('/favorites', favoritesRoutes);
 
 // ----------------------------------------
-console.log("GOING TO CONNECT to MONGOURI:", keys.mongoURI);
+// console.log("GOING TO CONNECT to MONGOURI:", keys.mongoURI);
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => console.log('Connection to Mongo DB established'))
     .catch(err => console.log(err));

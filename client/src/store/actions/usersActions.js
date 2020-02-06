@@ -29,6 +29,7 @@ export const fetchFavorites = () => (dispatch) => {
   }
 
 export const createUser = (userData) => dispatch => {
+    console.log('GET FAVORITES...');
     dispatch({
         type: CREATE_USER,
         payload: userData

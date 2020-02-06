@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9b5bd46f.chunk.css",
+    "main.js": "/static/js/main.6c74d9d8.chunk.js",
+    "main.js.map": "/static/js/main.6c74d9d8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8afc99d2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8afc99d2.js.map",
+    "static/css/2.237a6266.chunk.css": "/static/css/2.237a6266.chunk.css",
+    "static/js/2.cdbb5407.chunk.js": "/static/js/2.cdbb5407.chunk.js",
+    "static/js/2.cdbb5407.chunk.js.map": "/static/js/2.cdbb5407.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.e042477d55ba47f02b2d4dc8fbb4b421.js": "/precache-manifest.e042477d55ba47f02b2d4dc8fbb4b421.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.237a6266.chunk.css.map": "/static/css/2.237a6266.chunk.css.map",
+    "static/css/main.9b5bd46f.chunk.css.map": "/static/css/main.9b5bd46f.chunk.css.map",
+    "static/js/2.cdbb5407.chunk.js.LICENSE": "/static/js/2.cdbb5407.chunk.js.LICENSE",
+    "static/media/MYtineraryLogo.png": "/static/media/MYtineraryLogo.a227b9b3.png",
+    "static/media/circled-right-2.png": "/static/media/circled-right-2.16fd0ef3.png",
+    "static/media/styles.css": "/static/media/revicons.2feb69cc.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8afc99d2.js",
+    "static/css/2.237a6266.chunk.css",
+    "static/js/2.cdbb5407.chunk.js",
+    "static/css/main.9b5bd46f.chunk.css",
+    "static/js/main.6c74d9d8.chunk.js"
+  ]
+}
