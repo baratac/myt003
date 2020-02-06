@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route, withRouter, Redirect} from 'react-router-dom'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import JavascriptTimeAgo from 'javascript-time-ago'
@@ -13,6 +13,8 @@ import { connect } from 'react-redux'
 import { fetchCities, updateView } from './store/actions/citiesActions';
 import { signIn, fetchFavorites } from './store/actions/usersActions';
 
+// Import Tailwind CSS Library
+import './css/tailwind.css';
 // import Sites from './components/SiteList'
 import Header from './components/layouts/Header'
 import Footer from './components/layouts/Footer'
@@ -31,7 +33,12 @@ JavascriptTimeAgo.locale(pt)
 let TestFooter = withRouter(Footer);
 
 class App extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+        reloading: true
+    };
+  }
 
   slideOption =  (data, ev) => {
     //console.log('UP SLIDE OPT', data, ev.target.id);
@@ -67,29 +74,35 @@ class App extends Component {
   }
 
   render () {
+    console.log('APp Component Rendering...');
     return (
       <Router>
-        <div className="App container" >
-          <Header />
-          <div className="main-area">
-            <Route exact path="/">
-              <Home favorites={ this.props.currentView }/>
-            </Route>
-            <Route path="/city/:id" component = { City }></Route>
-            <Route path="/itinerary/:id" component = { CityItinerary }></Route>
-            <Route path="/city-list">
-              <Cities theList={ this.props.sites } />
-            </Route>
-            <Route exact path="/menu" component = { Menu }></Route>
-            <Route exact path="/Login" component = { Login }></Route>
-            <Route exact path="/create-account" component = { CreateAccount }></Route>
-          </div>
-          <TestFooter slideOpt={this.slideOption} />
-        </div>
+        { this.state.reloading ? <Redirect to="/" /> : 
+          <div className="App container main-container" >
+            <Header />
+            <div className="main-area">
+              <Route exact path="/">
+                <Home favorites={ this.props.currentView }/>
+              </Route>
+              <Route path="/city/:id" component = { City }></Route>
+              <Route path="/itinerary/:id" component = { CityItinerary }></Route>
+              <Route path="/city-list">
+                <Cities theList={ this.props.sites } />
+              </Route>
+              <Route exact path="/menu" component = { Menu }></Route>
+              <Route exact path="/Login" component = { Login }></Route>
+              <Route exact path="/create-account" component = { CreateAccount }></Route>
+            </div>
+            <TestFooter slideOpt={this.slideOption} />
+          </div>}
       </Router>
     );
   }
+
   componentDidMount() {
+    console.log("App component will mount...");
+    this.setState({reloading: false});
+    sessionStorage.reload = true;
     axios.defaults.baseURL = 'http://localhost:5000';
     const userToken = localStorage.getItem('userToken');
     if (userToken != null) {

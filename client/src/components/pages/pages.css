@@ -1,16 +1,8 @@
 .city-list {
-    height: 100%;
+    height: 545px;
     width: 100%;
     background-color: white;
-    overflow-y: scroll;
-}
-
-.city-list input {
-    width: 100%;
-    line-height: 1.5;
-    border-style: inset;
-    border: 1px solid cadetblue;
-    box-shadow: cadetblue;
+    overflow: scroll;
 }
 
 .cities-area {

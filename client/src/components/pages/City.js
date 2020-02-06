@@ -32,7 +32,7 @@ class City extends Component  {
         )
       } else {
           return (
-             <div className="d-flex justify-content-center align-content-center" style={ {width: '100%', height:'100%'} }>
+             <div className="d-flex justify-content-center align-content-center w-full h-full">
                <Card>
                  <Card.Img variant="top" src= { city.img } style={ {width: '100%', height:'25%'} }/>
                  <Card.ImgOverlay>

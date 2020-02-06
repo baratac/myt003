@@ -39,8 +39,8 @@ class CityItinerary extends Component  {
                  <Card.ImgOverlay>
                    <Card.Title style={ {backgroundColor: 'white', opacity: '0.7'}}>{ city.name }</Card.Title>
                  </Card.ImgOverlay>
-                 <Card.Body>
-                   <ItineraryBox item={itinerary} activities={this.props.activities || []}/>
+                 <Card.Body className="overflow-scroll">
+                    <ItineraryBox item={itinerary} activities={this.props.activities || []}/>
                  </Card.Body>
                  <Card.Footer>
                        <Link to={"/city/" + this.props.cityId} style={backButton}>Go Back</Link>

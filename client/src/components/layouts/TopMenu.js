@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Collapse } from 'react-bootstrap'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { signOut } from '../../store/actions/usersActions'
 import PropTypes from 'prop-types'
 import './layout.css'
@@ -120,20 +120,26 @@ export class TopMenu extends Component {
         return (
             <div >
                 {this.renderRedirect()}
-                <div className="top-menu">
-                    <button
-                        onClick={ this.userMenu  }
-                        //onMouseOver = { () => this.userMenu() }
-                        style={btnStyle}
-                        data-target="#usermenu"
-                        data-toggle="collapse"
-                    >
-                      { this.userPicture() }
-                    </button>
-                    <Link style={btnMenuStyle} to="/menu">
-                      <img style={ imgMenu } src={require("../../assets/menu-blue-64.png")} alt="Menu" />
-                    </Link>
-
+                <div className="flex mb-2">
+                    <div className="w-2/12 bg-gray-100 h-12">
+                      <button
+                          onClick={ this.userMenu  }
+                          className="mx-auto"
+                          style={btnStyle}
+                          data-target="#usermenu"
+                          data-toggle="collapse"
+                      >
+                        { this.userPicture() }
+                      </button>
+                    </div>
+                   <div className="w-8/12 bg-gray-100 h-12 object-cover overflow-hidden">
+                      {this.props.homePageActive ? null : <img className="w-4/5 h-12 mx-auto" src={require("../../assets/MYtineraryLogo.png")} alt="Logo"/> }
+                   </div>
+                    <div className="w-2/12 bg-gray-100 h-12">
+                      <a className="block mt-2" href="/menu">
+                        <img style={ imgMenu }  src={require("../../assets/menu-blue-64.png")} alt="Menu" />
+                      </a>
+                    </div>
                 </div>
                 <Collapse in={ this.state.openUserMenu } timeout={ 1500 }>
                   <div id="usermenu" onChange={ this.collapseState } className="collapse mt-2">
@@ -153,13 +159,14 @@ TopMenu.propTypes = {
 
 const mapStateToProps = state => ({
   currentUser: state.users.currentUser,
-  sessionActive: state.users.sessionActive
+  sessionActive: state.users.sessionActive,
+  homePageActive: state.navigation.splashPageActive
 })
 
 
 const imgUserIn = {
-    width: '35px',
-    height: '35px',
+    width: '45px',
+    height: '45px',
     overflow: 'hidden',
     border: '1.5px solid blue',
     borderRadius: '50%',
@@ -167,8 +174,8 @@ const imgUserIn = {
 }
 
 const imgUserOut = {
-  width: '35px',
-  height: '35px',
+  width: '45px',
+  height: '45px',
   overflow: 'hidden',
   border: '1.5px solid red',
   borderRadius: '50%',
@@ -177,32 +184,22 @@ const imgUserOut = {
 
 
 const imgMenu = {
-    width: '25px',
-    height: '25px',
+    width: '35px',
+    height: '35px',
     overflow: 'hidden',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    cursor: 'pointer'
 }
 
 const btnStyle = {
-    width: '30px',
-    height: '30px',
+    width: '50px',
+    height: '50px',
     background: 'transparent',
     border: 'none', //'1px solid grey',
     padding: '2px 2px',
-    borderRadius: '50%',
-    cursor: 'pointer',
+    borderRadius: '40%',
+    cursor: 'pointer'
   };
 
-
-  const btnMenuStyle = {
-    width: '30px',
-    height: '30px',
-    background: 'transparent',
-    border: 'none', // '1px solid grey',
-    padding: '2px 2px',
-    borderRadius: '10%',
-    cursor: 'pointer',
-  };
 
 export default connect(mapStateToProps, { signOut })(TopMenu);
-

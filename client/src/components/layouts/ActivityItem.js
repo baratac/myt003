@@ -7,7 +7,7 @@ function ActivityItem(props) {
     // console.log('IMAGE:', "./assets/" + props.item.img )
     return (
         <Card className="bg-dark text-white m-2 text-center">
-            <Card.Img src={ "/assets/" + props.item.img } style={ cityLink } alt="Activity" />
+            <Card.Img src={ props.item.img } style={ cityLink } alt="Activity" />
             <Card.ImgOverlay>
                 <Card.Title 
                     className="small align-self-center bg-dark"

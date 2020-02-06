@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Image } from 'react-bootstrap'
 import SlideArea from '../layouts/SlideArea'
 import PropTypes from 'prop-types'
+import { enterHome, exitHome}from '../../store/actions/navActions'
 import './pages.css'
 
 export class LandingPage extends Component {
@@ -29,13 +31,27 @@ export class LandingPage extends Component {
           </div>
         </div>
     )
-    }
+  }
+  componentDidMount() {
+    console.log('Enter Home')
+    this.props.enterHome();
+  }
+  componentWillUnmount() {
+    this.props.exitHome('Exit Home...');
+  }
 }
 
 LandingPage.propTypes = {
-    favorites: PropTypes.array.isRequired
+    favorites: PropTypes.array.isRequired,
+    enterHome: PropTypes.func,
+    exitHome: PropTypes.func
   }
-export default LandingPage;
+
+  const mapStateToProps = state => ({
+    
+  })
+
+export default connect(mapStateToProps, {enterHome, exitHome})(LandingPage);
 
 const cityLink = {
   width: '160px',
@@ -44,7 +60,7 @@ const cityLink = {
 } 
 
 const imgStyle = {
-  marginLeft: '-5px',
+  margin: 'auto',
   width: '320px',
   height: '100px'
 }

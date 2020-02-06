@@ -14,13 +14,13 @@ a {
     text-decoration: none;
 }
 
-.container {
+.main-container {
     display: flex;
     flex-direction: column;
     max-width: 418px;
     height: 736px;
     margin: auto;
-    overflow: scroll;
+    overflow: hidden;
     color: #1A202C;
     background-color: white;
     border: 2px solid black;
@@ -28,7 +28,8 @@ a {
 }
 
 .main-area {
-    height: 630px;
+    height: 600px;
+    overflow: hidden;
     background-color: white;
 }
 

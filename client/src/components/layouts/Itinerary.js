@@ -11,6 +11,7 @@ import './layout.css'
 
 function ItineraryBox (props) {
     const [likeFlag, setLike ] = useState(true);
+    const [profileData, setProfileData] = useState({name: 'Anonimous', pic: require("../../assets/user-blue-02.png")});
     const favorites = useSelector(state => state.users.favorites);
     
     const dispatch = useDispatch();
@@ -20,7 +21,15 @@ function ItineraryBox (props) {
         // console.log('LIKE STATUS:', likeStatus);
         setLike(likeStatus);
         // console.log('Current User', currentUser);
-    }, [favorites, props.item._id])
+        const pData =({name: 'Anonimous', pic: require("../../assets/user-blue-02.png")});
+        if (props.item.profilePic !== undefined && props.item.profilePic.length > 0) {
+            pData.pic = props.item.profilePic;
+        }
+        if (props.item.profileName !== undefined && props.item.profileName.length > 0) {
+            pData.name = props.item.profileName;
+        }
+        setProfileData(pData);
+    }, [favorites, props.item._id, props.item.profilePic, props.item.profileName])
 
     let x = 1;
     let priceTag = props.item.price;
@@ -61,39 +70,50 @@ function ItineraryBox (props) {
     }
 
     return (
-        <div className="container" style={cityLink}>
-            <div className="row">
-                <div className="col-3" style={profileBox}>
-
+        <div className="container city-link">
+            <div className="row bg-indigo-100">
+                <div className="profile-box col-3 px-2 mx-auto">
+                    <div className="d-flex flex-column justify-content-center">
+                        <img src={ profileData.pic } className="img-it mx-auto" alt="User Pic" />
+                        <small className="mx-auto text-gray-600">{ profileData.name }</small>
+                    </div>
                 </div>
                 <div className="col-9 text-left info-box">
                     <button
                         onClick={ toogleLike }
-                        //onMouseOver = { () => this.userMenu() }
                         className="btn-like"
                     >
                         { likeImage() }
                     </button>
-                    <div>
-                        {props.item.title}  
+                    <div className="btn-plus">
+                        <Link to={"/itinerary/" + props.item._id}>
+                            <img className="img-plus" src={require("../../assets/plus-6-64.png")} alt="Like Flag unset" />
+                        </Link>
                     </div>
-                    <div className="row">
-                        <div className="col small">
-                            Likes: { props.item.rating }
+                    <div className="flex-col flex-wrap content-end h-full">
+                        <div className="mt-2 mb-1 text-gray-800"> 
+                            {props.item.title}  
                         </div>
-                        <div className="col small">
-                            { props.item.duration }
+                        <div>
+                            <div className="row text-gray-500">
+                                <div className="col small">
+                                    Likes: { props.item.rating }
+                                </div>
+                                <div className="col small">
+                                    { props.item.duration }
+                                </div>
+                                <div className="col small">
+                                        Cost: { priceTag }
+                                </div>
+                            </div>
                         </div>
-                        <div className="col small">
-                                { priceTag }
-                        </div>
+                        {props.item.hashTags.length > 0 ? 
+                            (<div>
+                                {props.item.hashTags.map((tag, idx) => (<small key={idx}>#{tag} </small>))}
+                            </div>) : null
+                        }
                     </div>
-                    <div>
-                        {props.item.hashTags.map((tag, idx) => (<small key={idx}>#{tag} </small>))}
-                    </div>
-                </div>
-                <div style={itButton}>
-                    <Link to={"/itinerary/" + props.item._id}>v View All v</Link>
+
                 </div>
             </div>
 
@@ -102,33 +122,4 @@ function ItineraryBox (props) {
     
 }
 
-
-const cityLink = {
-    position: 'relative',
-    width: '100%',
-    height: '110px',
-    display: 'block',
-    border: '1px solid black',
-    margin: '2px'
-  }
-  const profileBox = {
-      width: '100%',
-      height: '80px',
-      backgroundColor: 'blue'
-  }
-
-const itButton = {
-    backgroundColor: '#555555',
-    width: '100%',
-    border: 'none',
-    color: 'white',
-    padding: '4px 4px',
-    textAlign: 'center',
-    textDecoration: 'none',
-    display: 'inline-block',
-    fontSize: '16px',
-    boxSizing: 'border-box',
-    //margin: '4px 2px',
-    cursor: 'pointer'
-  }
 export default ItineraryBox

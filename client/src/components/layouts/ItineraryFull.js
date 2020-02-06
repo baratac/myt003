@@ -1,52 +1,70 @@
-import React  from 'react'
+import React, { useState, useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import Comments from "./Comments"
 import "react-multi-carousel/lib/styles.css";
-
+//import ItineraryBox from './Itinerary'
 import ActivityItem from './ActivityItem'
 import './layout.css'
 
 function ItineraryFull (props) {
-    
+    const [profileData, setProfileData] = useState({name: 'Anonimous', pic: require("../../assets/user-blue-02.png")});
+
+    useEffect(() => {
+        const pData =({name: 'Anonimous', pic: require("../../assets/user-blue-02.png")});
+        if (props.item.profilePic !== undefined && props.item.profilePic.length > 0) {
+            pData.pic = props.item.profilePic;
+        }
+        if (props.item.profileName !== undefined && props.item.profileName.length > 0) {
+            pData.name = props.item.profileName;
+        }
+        setProfileData(pData);
+    }, [props.item._id, props.item.profilePic, props.item.profileName])
+
     console.log(props.item)
     let x = 1;
     let priceTag = props.item.price;
-
     if (!isNaN(Number(props.item.price))) {
         if (props.item.price < 100) {
             x = Math.ceil(props.item.price/20);
-        } else {
-            x = 5;
-        }
-        priceTag = '€'.repeat(x);
+            } else {
+                x = 5;
+            }
+            priceTag = '$'.repeat(x);
     }
-
-
 
     let theList = props.activities.map((item) => (<ActivityItem item={item} key = { item._id } />))
     return (
-        <div className="container" style={cityLink}>
-            <div className="row">
-                <div className="col-3" style={profileBox}>
-
+        <div className="container">
+            <div className="row bg-indigo-100">
+                <div className="profile-box col-3 px-2 mx-auto">
+                    <div className="d-flex flex-column justify-content-center">
+                        <img src={ profileData.pic } className="img-it mx-auto" alt="User Pic" />
+                        <small className="mx-auto text-gray-600">{ profileData.name }</small>
+                    </div>
                 </div>
                 <div className="col-9 text-left info-box">
-                    <div>
-                        {props.item.title}  
-                    </div>
-                    <div className="row">
-                        <div className="col small">
-                            Likes: { props.item.rating }
+                    <div className="flex-col flex-wrap content-end h-full">
+                        <div className="mt-2 mb-1 text-gray-800"> 
+                            {props.item.title}  
                         </div>
-                        <div className="col small">
-                            { props.item.duration }
+                        <div>
+                            <div className="row text-gray-500">
+                                <div className="col small">
+                                    Likes: { props.item.rating }
+                                </div>
+                                <div className="col small">
+                                    { props.item.duration }
+                                </div>
+                                <div className="col small">
+                                        Cost: { priceTag }
+                                </div>
+                            </div>
                         </div>
-                        <div className="col small">
-                            { priceTag }
-                        </div>
-                    </div>
-                    <div>
-                        {props.item.hashTags.map((tag, idx) => (<small key={idx}>#{tag} </small>))}
+                        {props.item.hashTags.length > 0 ? 
+                            (<div>
+                                {props.item.hashTags.map((tag, idx) => (<small key={idx}>#{tag} </small>))}
+                            </div>) : null
+                        }
                     </div>
                 </div>
             </div>
@@ -105,25 +123,11 @@ function ItineraryFull (props) {
                 </Carousel>
             : null}
             <Comments itId={ props.item._id } />
+           
         </div>
     );
     
 }
-
-
-const cityLink = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    display: 'block',
-    border: '1px solid black',
-    margin: '2px'
-  }
-  const profileBox = {
-      width: '100%',
-      height: '80px',
-      backgroundColor: 'blue'
-  }
 
 
 export default ItineraryFull

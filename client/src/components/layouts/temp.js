@@ -72,3 +72,35 @@
               Submit
             </Button>
           </Form>
+
+
+                <Toast
+                animation="true"
+                show={show[index]}
+                onClose={closeComment(index)}
+                delay={3000}
+                autohide
+                key={item._id}>
+                    <Toast.Header closeButton="false">
+                        <img src={item.userPic} className="rounded mr-2 img-comment" alt="" />
+                        <strong className="mr-auto">{item.userName}</strong>
+                        <small><ReactTimeAgo date={new Date(item.createdAt)} locale="en"/></small>
+                    </Toast.Header>
+                    <Toast.Body>
+                        <div className="text-left">
+                            <textarea 
+                            readOnly
+                            defaultValue={item.message}
+                            className="form-control" 
+                            rows="2" 
+                            id="comment"></textarea>  
+                        </div>
+                        <div className="small"> 
+                            <Button className="mr-auto" size="sm" variant="link">Update</Button>
+                            <Button className="ml-auto" size="sm" variant="link">Delete</Button>
+                        </div>
+                    </Toast.Body>
+                </Toast>
+
+
+background-color: rgba(180, 210, 219, .55);

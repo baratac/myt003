@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { useSelector  } from 'react-redux';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form'
-import Toast from 'react-bootstrap/Toast';
 import ReactTimeAgo from 'react-time-ago'
+import CommentItem from './CommentItem';
+
+import './layout.css';
  
 
 export default function Comments(props) {
@@ -13,10 +15,10 @@ export default function Comments(props) {
     const [ addedComment, addCom ] = useState(false);
 
     const currUser = useSelector(state => state.users.currentUser);
-    const data = {
+    const data = { init: {
         userName: currUser.name,
         userPic: currUser.img === undefined ? '' : currUser.img
-    }
+    }};
 
     // Manage Comment text area
     //
@@ -30,11 +32,12 @@ export default function Comments(props) {
     // Submit Comment
     //
     function submitComment() {
-        console.log("Submit Comment", comment);
-        data.message = comment;
+        //console.log("Submit Comment", comment);
+        data.operation = 'CREATE';
+        data.init.message = comment;
         axios.put('/comments/' + props.itId, data).then(
             res => {
-                console.log('Update comment successful!', res);
+                //console.log('Update comment successful!', res);
                 addCom(!addedComment);
             },
             error => {
@@ -42,19 +45,52 @@ export default function Comments(props) {
             }
         )
         setComment('');
+        setSize(1);
     }
+    const updateComment = (comment, message) => {
+       // console.log("On Update Comment", comment);
+       // console.log("With new message:", message);
+       const data = {operation: 'UPDATE', id: comment._id, message: message }
+       axios.put('/comments/'  + props.itId, data).then(
+            res => {
+                // console.log('Update comment successful!', res);
+                addCom(!addedComment);
+            },
+            error => {
+                console.log('Update Comment failed...', error);
+            }
+        )
+    }
+
+    const deleteComment = (comment) => {
+        // console.log("On Delete Comment", comment);
+        const data = {operation: 'DELETE', id: comment._id }
+        axios.put('/comments/'  + props.itId, data).then(
+            res => {
+                // console.log('Delete comment successful!', res);
+                addCom(!addedComment);
+            },
+            error => {
+                console.log('Delete Comment failed...', error);
+            }
+        )
+    }
+
+
 
     useEffect(() => {
         console.log('Comment Use Effect running...');
+
         axios.get('/comments/' + props.itId).then(
             comList => {
                 comList.data.forEach(item => {
                     if (item.userPic.length === 0) {
                         item.userPic = require("../../assets/user-red-02.png");
                     }
+                    // console.log("Comments Axios Response")
                 })
                 setList(comList.data);
-                console.log('Comment List', comList);
+                // console.log('Comment List', comList);
             },
             error => {
                 console.log('Comment List Fetch error', error);
@@ -73,7 +109,7 @@ export default function Comments(props) {
                                 as="textarea" 
                                 size="sm" 
                                 rows={ commentSize }
-                                value={comment}
+                                value={ comment }
                                 onChange={ commentUpdate }
                                 placeholder="Drop a comment..." />
                         </Form.Group>
@@ -81,23 +117,24 @@ export default function Comments(props) {
                 </div>
                 <div className="col-1 mt-2 p-0">
                     <button
-                        onClick={ submitComment  }
+                        onClick={  comment.length > 0 ? submitComment : null}
                         style={arrowBtnStyle}
                     >
                         <img style={imgCommentGo} src={require("../../assets/arrow-blue-r64.png")} alt="Comment Go" />
                     </button>
                 </div>
             </div>
-            {commentList.map(( item ) => (
-                <Toast key={item._id}>
-                    <Toast.Header>
+            {commentList.length > 0 ? commentList.map(( item, index ) => (
+                <div className="toast-comment show fade" key={index}>
+                    <div className="toast-comment-header">
                         <img src={item.userPic} className="rounded mr-2 img-comment" alt="" />
                         <strong className="mr-auto">{item.userName}</strong>
                         <small><ReactTimeAgo date={new Date(item.createdAt)} locale="en"/></small>
-                    </Toast.Header>
-                    <Toast.Body>{item.message}</Toast.Body>
-                </Toast>
-            ))}
+                    </div>
+                    <CommentItem comment={item} onDelete={deleteComment} onUpdate={updateComment}></CommentItem>
+                </div>
+
+            )) : null}
         </div>
 
     )
