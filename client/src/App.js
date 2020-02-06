@@ -75,7 +75,7 @@ class App extends Component {
 
   render () {
     console.log('APp Component Rendering...');
-    axios.defaults.baseURL = 'https://myt-cab2165.herokuapp.com';
+
     return (
       <Router>
         { this.state.reloading ? <Redirect to="/" /> : 
@@ -105,11 +105,11 @@ class App extends Component {
     this.setState({reloading: false});
     sessionStorage.reload = true;
     // axios.defaults.baseURL = 'http://localhost:5000';//'https://myt-cab2165.herokuapp.com'; // 'http://localhost:5000';
+    this.props.fetchCities();
     const userToken = localStorage.getItem('userToken');
     if (userToken != null) {
         this.props.signIn({token: userToken}).then(
           res => {
-            this.props.fetchCities();
             this.props.fetchFavorites();
           }
         );

@@ -10,11 +10,16 @@ export const fetchUsers = () => dispatch => {
         dispatch({
             type: GET_USERS_DATA,
             payload: newList
-        });
+        },
+        err => {
+            console.log('FETCH Users error:', err);
+        }
+        );
     });
 }
 
 export const fetchFavorites = () => (dispatch) => {
+    console.log('GET FAVORITES...');
     axios.get('/favorites')
       .then(res => {
           const newList = res.data;
@@ -29,7 +34,6 @@ export const fetchFavorites = () => (dispatch) => {
   }
 
 export const createUser = (userData) => dispatch => {
-    console.log('GET FAVORITES...');
     dispatch({
         type: CREATE_USER,
         payload: userData

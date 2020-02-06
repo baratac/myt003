@@ -65,7 +65,7 @@ const LoginPage = () => {
           data.name = values.id;
         }
         console.log("User Data:", data)
-        return axios.post('http://localhost:5000/users/check-credentials', data);
+        return axios.post('/users/check-credentials', data);
     }
 
     console.log('Current User:', currentUser)
