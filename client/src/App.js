@@ -75,7 +75,7 @@ class App extends Component {
 
   render () {
     console.log('APp Component Rendering...');
-
+    console.log('APP Environment', process.env.NODE_ENV);
     return (
       <Router>
         { this.state.reloading ? <Redirect to="/" /> : 
