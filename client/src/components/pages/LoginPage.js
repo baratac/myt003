@@ -40,10 +40,10 @@ const LoginPage = () => {
             img: response.profileObj.imageUrl,
             googleId: response.profileObj.googleId
         }
-        console.log('Data to BE from Google response:', data);
+        // console.log('Data to BE from Google response:', data);
         axios.post('/users/login-google', data)
         .then(res => {
-            console.log('Login Google BE response', res.data)
+            // console.log('Login Google BE response', res.data)
             dispatch( signIn( res.data ) );
             history.push('/')
         }).catch( (error) => {
@@ -64,11 +64,11 @@ const LoginPage = () => {
         } else {
           data.name = values.id;
         }
-        console.log("User Data:", data)
+        // console.log("User Data:", data)
         return axios.post('/users/check-credentials', data);
     }
 
-    console.log('Current User:', currentUser)
+    // console.log('Current User:', currentUser)
     return (
         <div>
             <h1>LOGIN PAGE</h1>
@@ -81,7 +81,7 @@ const LoginPage = () => {
                     submitCredentials(values)
                         .then(res => {
                                 dispatch( signIn( res.data ) );
-                                console.log("Login User Ok:", res.data);
+                                // console.log("Login User Ok:", res.data);
                                 submitMessage = 'Login Successful';
                                 resetForm();
                                 history.push('/')
@@ -112,6 +112,7 @@ const LoginPage = () => {
                         <Form.Control 
                             type="text"
                             name="id"
+                            autoComplete="username"
                             placeholder="Enter user identity"
                             value={ values.id }
                             onBlur={ handleBlur }
@@ -127,6 +128,7 @@ const LoginPage = () => {
                         <Form.Control
                             type="password"
                             name="password"
+                            autoComplete="current-password"
                             placeholder="Password"
                             value={ values.password }
                             onChange={ handleChange }

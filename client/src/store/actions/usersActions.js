@@ -38,19 +38,6 @@ export const createUser = (userData) => dispatch => {
         type: CREATE_USER,
         payload: userData
     });
-    /*
-    axios.post('http://localhost:5000/users', userData)
-      .then(res => {
-          const newUser = res.data;
-          // console.log("Action Fetch all users:", newList)
-          dispatch({
-              type: CREATE_USER,
-              payload: newUser
-          });
-      }).catch( (error) => {
-          console.log(error);
-      });
-    */
   }
   
 export const signOut = () => async dispatch => {
@@ -78,7 +65,7 @@ export const signIn = (authData) =>  async dispatch => {
         });
     }
     catch(error) {
-        console.log('Sign In error:', error);
+        throw error;
     }
 };
 

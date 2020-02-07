@@ -12,7 +12,12 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './index.css';
 import App from './App';
 
-axios.defaults.baseURL = 'https://myt-cab2165.herokuapp.com';
+if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = 'https://myt-cab2165.herokuapp.com';
+} else {
+  axios.defaults.baseURL = 'http://localhost:5000';
+}
+
 
 ReactDOM.render(
   <Provider store={store}>

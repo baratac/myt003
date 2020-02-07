@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, withRouter, Redirect} from 'react-router-dom'
-import axios from 'axios'
 import PropTypes from 'prop-types'
 import JavascriptTimeAgo from 'javascript-time-ago'
  
@@ -60,22 +59,14 @@ class App extends Component {
     }
     const start = (newPage - 1) * 4;
     const newView = this.props.sites.slice(start, start + 4)
-    // console.log('PAGE:', newPage, newView);
-    // Alternative set state setup....
-    /*
-    this.setState((state) => {
-      return { currentPage: newPage, currentView: newView }
-    });
-    */
+
    this.props.updateView({
     currentPage: newPage,
     currentView: newView
     });
   }
 
-  render () {
-    console.log('APp Component Rendering...');
-    console.log('APP Environment', process.env.NODE_ENV);
+  render () {    console.log('Rendering APP Environment', process.env.NODE_ENV);
     return (
       <Router>
         { this.state.reloading ? <Redirect to="/" /> : 
@@ -101,16 +92,38 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("App component will mount...");
+    // console.log("App component will mount...");
     this.setState({reloading: false});
     sessionStorage.reload = true;
-    // axios.defaults.baseURL = 'http://localhost:5000';//'https://myt-cab2165.herokuapp.com'; // 'http://localhost:5000';
     this.props.fetchCities();
     const userToken = localStorage.getItem('userToken');
     if (userToken != null) {
         this.props.signIn({token: userToken}).then(
           res => {
+            console.log('Response Data:', res);
             this.props.fetchFavorites();
+          },
+          error => {
+              if (error.response) {
+                localStorage.removeItem('userToken');
+                /*
+                * The request was made and the server responded with a
+                * status code that falls out of the range of 2xx
+                */
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                /*
+                * The request was made but no response was received, `error.request`
+                * is an instance of XMLHttpRequest in the browser and an instance
+                * of http.ClientRequest in Node.js
+                */
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request and triggered an Error
+                console.log('Error', error.message);
+            }
           }
         );
     }
@@ -133,9 +146,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { fetchCities, fetchFavorites, updateView, signIn })(App);
-/*
-            <Sites 
-              content = { this.state.sites } 
-              toggleLikes = { this.toggleLikes }
-              delSite = { this.delSite } />
-*/

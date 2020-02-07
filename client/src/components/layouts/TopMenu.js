@@ -40,7 +40,7 @@ export class TopMenu extends Component {
         const closeIt = false;
 //        let history = useHistory();
 
-        console.log(ev.target);
+        // console.log(ev.target);
         
         if (ev.target.id === 'login-btn') {
             //history.push("/login");
