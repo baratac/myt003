@@ -11,6 +11,12 @@
     justify-content: space-between;
 }
 
+.collapse-block {
+    transition-property: height;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+}
+
 button:focus {
     outline: 0;
 }
@@ -93,7 +99,7 @@ button.user-menu:hover {
 }
 
 .slide-container {
-    flex-direction: column;
+    position: relative;
     max-width: 418px;
     height: 100px;
     margin: auto;
@@ -238,6 +244,5 @@ button.user-menu:hover {
     height: 50px;
     overflow: hidden;
     border-radius: 50%;
-    margin: 5px 5px 5px 0;
     background-color: transparent;
 }

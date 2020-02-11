@@ -1,33 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
-import PropTypes from 'prop-types'
+
 import './layout.css'
 
-export class SlideItem extends Component {
-    render() {
+export default function SlideItem(props) {
+
         return (
-             <Link to={"/city/" + this.props.id} className="d-block">
-                <Card className="bg-dark text-white m-2 text-center">
-                    <Card.Img src={ this.props.image } style={ cityLink } alt="City Favorite" />
+             <Link to={"/city/" + props.id} className="block h-32 w-40">
+                <Card className="text-white m-1 text-center">
+                    <Card.Img src={ props.image } className="h-full w-full object-fit" alt="City Favorite" />
                     <Card.ImgOverlay>
                         <Card.Title 
                           className="h6 align-self-center bg-dark"
                           style={ {opacity: '0.5'}}
                         >
-                          {this.props.city}
+                          {props.city}
                         </Card.Title>
                     </Card.ImgOverlay>
                 </Card>
             </Link>
-        )
-    }
-}
-
-SlideItem.propTypes = {
-    city: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    image: PropTypes.string
+        );
+    
 }
 
 
@@ -36,4 +30,4 @@ const cityLink = {
     height: '120px',
     display: 'block',
   } 
-export default SlideItem
+

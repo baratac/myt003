@@ -17,9 +17,8 @@ a {
 .main-container {
     display: flex;
     flex-direction: column;
-    max-width: 418px;
+    max-width: 1024px;
     height: 736px;
-    margin: auto;
     overflow: hidden;
     color: #1A202C;
     background-color: white;
@@ -28,8 +27,8 @@ a {
 }
 
 .main-area {
-    height: 600px;
-    overflow: hidden;
+    height: 620px;
+    overflow: scroll;
     background-color: white;
 }
 

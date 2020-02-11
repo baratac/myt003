@@ -30,18 +30,18 @@ function CitiesPage(props) {
     //console.log('Cities List: ', elemList)
     return (
       <div>
-        <div>
+        <div className="w-full sm:w-4/5 lg:w-1/2 mx-auto">
           <p className="subpixel-antialiased text-xl tracking-wide text-center leading-relax">City List</p>
           <input 
               type="text"
               id="city-search"
-              className="placeholder-indigo-200 border border-indigo-400 focus:border-indigo-600 rounded-lg w-100 mb-1"
+              className="placeholder-indigo-200 border border-indigo-400 focus:border-indigo-600 rounded-lg w-full mb-1"
               name="citySearch"
               placeholder="Search City"
               value={srchCity}
               onChange={updateCityList}/>
         </div>
-        <div id="list-of-cities" className="relative m-1 border border-blue-800 city-list">
+        <div  className="xpto flex flex-wrap justify-around content-center m-1 px-2 overflow-scroll w-full">
              {cityList.map((item) => (<CityEntry item={item} key = { item._id } />))}
         </div>
       </div>

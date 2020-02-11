@@ -29,7 +29,7 @@ export class Footer extends Component {
       );
     } else {
       return (
-        <div className="d-flex justify-content-center">
+        <div className="flex justify-center content-center mt-0">
           <button 
             id="left-btn"
             style={btnStyle}

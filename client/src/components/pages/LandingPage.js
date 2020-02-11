@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Image } from 'react-bootstrap'
 import SlideArea from '../layouts/SlideArea'
+import CitySlides from '../layouts/CitySlides'
 import PropTypes from 'prop-types'
-import { enterHome, exitHome}from '../../store/actions/navActions'
+import { enterHome, exitHome } from '../../store/actions/navActions';
 import './pages.css'
 
 export class LandingPage extends Component {
@@ -13,20 +13,18 @@ export class LandingPage extends Component {
         // console.log(this.props);
         return (
         <div >
-          <div style={{backgroundColor: '#fff'}}>
-            <Image src={require("../../assets/MYtineraryLogo.png")} style={ imgStyle } />
-          </div>
-          <div className="cities-area d-flex justify-content-center align-content-center">
-             <Link to="/city-list" className="d-block text-decoration-none">
-                <h6 
-                  className="d-block p-2 text-decoration-none" style={{color: '#1A202C'}}
+          <CitySlides cities={ this.props.cities } deviceType={ this.props.deviceType } />
+          <div className="flex justify-center content-center border-t-2 border-b-2 border-gray-900 border-dashed">
+             <Link to="/city-list" className="block text-decoration-none">
+                <p 
+                  className="block p-2 text-lg subpixel-antialiased font-medium tracking-wide text-gray-800 leading-relaxed"
                 >
                   Find your perfect trip, designed by insiders who know and love their cities
-                </h6>
-                <img src={require("../../assets/circled-right-2.png")} alt="Cities" style={ cityLink } className="mt-1 mx-auto"/>
+                </p>
+                <img src={require("../../assets/circled-right-2.png")} alt="Cities" className="block w-32 h-32 mt-1 mb-2 mx-auto"/>
             </Link>
           </div>
-          <div className="slide-area">
+          <div style={{height: "18rem"}}className="relative flex flex-wrap sm:flex-no-wrap justify-center content-center overflow-scroll mt-1 mb-0 mx-auto lg:px-4 sm:px-2 sm:py-12 lg:py-16 lg:pt-0">
              <SlideArea theTab={ this.props.favorites } />
           </div>
         </div>
@@ -48,19 +46,7 @@ LandingPage.propTypes = {
   }
 
   const mapStateToProps = state => ({
-    
+    cities: state.cities.sites,
   })
 
 export default connect(mapStateToProps, {enterHome, exitHome})(LandingPage);
-
-const cityLink = {
-  width: '160px',
-  height: '160px',
-  display: 'block',
-} 
-
-const imgStyle = {
-  margin: 'auto',
-  width: '320px',
-  height: '100px'
-}

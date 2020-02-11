@@ -5,8 +5,9 @@ import axios from 'axios';
 import { Provider } from "react-redux";
 import store from "./store"
 
+import './css/tailwind.css';
 import 'jquery/src/jquery'; //for bootstrap.min.js
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 import './index.css';

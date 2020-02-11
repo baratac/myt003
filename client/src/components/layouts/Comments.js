@@ -101,13 +101,12 @@ export default function Comments(props) {
 
     return (
         <div>
-            <div className="row">
-                <div className="col-11 pr-1">
-                    <Form className="mt-2 w-100">
+            <div className="flex flex-wrap justify-start">
+                <div className="w-9/12">
+                    <Form className="w-full h-full">
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Control 
                                 as="textarea" 
-                                size="sm" 
                                 rows={ commentSize }
                                 value={ comment }
                                 onChange={ commentUpdate }
@@ -115,7 +114,7 @@ export default function Comments(props) {
                         </Form.Group>
                     </Form>
                 </div>
-                <div className="col-1 mt-2 p-0">
+                <div className="w-3/12 mt-2 p-0">
                     <button
                         onClick={  comment.length > 0 ? submitComment : null}
                         style={arrowBtnStyle}

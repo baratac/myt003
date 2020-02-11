@@ -33,6 +33,7 @@ function ItineraryFull (props) {
     }
 
     let theList = props.activities.map((item) => (<ActivityItem item={item} key = { item._id } />))
+    console.log("THE LIST:", theList);
     return (
         <div className="container">
             <div className="row bg-indigo-100">
