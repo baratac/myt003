@@ -21,12 +21,24 @@ export default function TopNavMenu() {
     function userPicture() {
         if (sessionActive) {
           if (currentUser.img) {
-            return (<img className="w-10 h-10 border-blue-700 border rounded-full" src={currentUser.img} alt="User" />)
+            return (
+                <div className="border-gray-200 border rounded-full overflow-hidden">
+                    <img className="w-10 h-10 " src={currentUser.img} alt="User" />
+                </div>
+            );
           } else {
-            return (<img className="w-10 h-10 border-blue-700 rounded-full" src={require("../../assets/user-blue-02.png")} alt="User" />);
+            return (
+                <div className="border-gray-200 border rounded-full overflow-hidden">
+                    <img className="w-10 h-10" src={require("../../assets/user-blue-02.png")} alt="User" />
+                </div>
+            );
           }
         } else {
-           return (<img className="w-10 h-10 " src={require("../../assets/user-red-02.png")} alt="User" />);
+           return (
+                <div className="border border-red-200 rounded-full overflow-hidden">
+                    <img className="w-10 h-10" src={require("../../assets/user-red-02.png")} alt="User" />
+                </div>
+            );
         }                 
     }
 /*
@@ -94,9 +106,7 @@ export default function TopNavMenu() {
         <div className="mb-2">
             <nav className="flex flex-col sm:flex-row sm:justify-between bg-gray-700 p-2">
                 <div  className="flex items-center justify-between flex-wrap w-full">
-                    <div className="border border-red-700  rounded-full overflow-hidden">
-                        {userPicture()}
-                    </div>
+                    { userPicture() }
                     <div className="w-56 sm:w-64  sm:ml-20" style= {{boxSizing:"content-box"}}>
                         <img className="w-full h-12" src={require("../../assets/MYtineraryLogo.png")} alt="Logo"/>
                     </div>

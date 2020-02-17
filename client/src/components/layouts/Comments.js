@@ -100,24 +100,24 @@ export default function Comments(props) {
     }, [props.itId, addedComment]);
 
     return (
-        <div>
-            <div className="flex flex-wrap justify-start">
-                <div className="w-9/12">
-                    <Form className="w-full h-full">
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Control 
-                                as="textarea" 
-                                rows={ commentSize }
+        <div className="relative w-full">
+            <div className="flex flex-wrap justify-start items-center">
+                <div className="w-11/12 p-2">
+                    <label class="block">
+                            <textarea 
+                                className="form-textarea resize-none mt-1 block w-full" 
+                                rows="3"
+                                resize="none"
                                 value={ comment }
                                 onChange={ commentUpdate }
-                                placeholder="Drop a comment..." />
-                        </Form.Group>
-                    </Form>
+                                placeholder="Drop a comment..."></textarea>
+                    </label>
                 </div>
-                <div className="w-3/12 mt-2 p-0">
+                <div className="w-1/12 -ml-2">
                     <button
                         onClick={  comment.length > 0 ? submitComment : null}
                         style={arrowBtnStyle}
+                        className="align-self"
                     >
                         <img style={imgCommentGo} src={require("../../assets/arrow-blue-r64.png")} alt="Comment Go" />
                     </button>
@@ -155,3 +155,17 @@ const arrowBtnStyle = {
     borderRadius: '20%',
     cursor: 'pointer',
   };
+
+  /*
+
+                      <Form className="w-full h-full">
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Control 
+                                as="textarea" 
+                                rows={ commentSize }
+                                value={ comment }
+                                onChange={ commentUpdate }
+                                placeholder="Drop a comment..." />
+                        </Form.Group>
+                    </Form>
+*/

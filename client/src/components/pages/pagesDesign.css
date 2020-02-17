@@ -1,3 +1,16 @@
 .errorSign {
     border: 2px solid #FF6565;
 }
+
+.it-height {
+    height: 100%;
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 640px) {
+    .it-height {
+        height: 70%;
+    }
+}

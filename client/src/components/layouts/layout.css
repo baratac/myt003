@@ -93,14 +93,12 @@ button.user-menu:hover {
 }
 
 .activity-slide {
-    width: 60px;
-    height: 60px;
+    height: 100px;
     display: block;
 }
 
 .slide-container {
-    position: relative;
-    max-width: 418px;
+    max-width: 480px;
     height: 100px;
     margin: auto;
     background-color: inherit;

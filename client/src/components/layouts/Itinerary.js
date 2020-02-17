@@ -59,7 +59,9 @@ function ItineraryBox (props) {
         }
     }
 
-    // console.log('Itinerary Props:', props.item);
+    console.log('Itinerary Props:', props.item);
+    console.log('Itinerary Props:', props.isOpen);
+
     if (!isNaN(Number(props.item.price))) {
         if (props.item.price < 100) {
             x = Math.ceil(props.item.price/20);
@@ -70,9 +72,9 @@ function ItineraryBox (props) {
     }
 
     return (
-        <div className="relative w-full h-20 block border rounded mx-4 mt-4">
-            <div className="flex flex-wrap bg-gray-200 rounded-lg shadow-lg">
-                <div className="w-1/4 h-20 border border-gray-200 grid-cols-3 p-2 mx-auto">
+        <div className="relative w-full sm:w-5/12 h-20 block border rounded mx-4 mt-4">
+            <div className="flex flex-wrap  rounded-lg shadow-lg">
+                <div className="w-1/4 h-20 border  p-2 mx-auto">
                     <div className="flex flex-col justify-center shadow-xl">
                         <img src={ profileData.pic } className="img-it block mx-auto" alt="User Pic" />
                         <small className="mx-auto text-gray-600 truncate">{ profileData.name }</small>
@@ -85,13 +87,19 @@ function ItineraryBox (props) {
                     >
                         { likeImage() }
                     </button>
-                    
-                    <Link to={"/itinerary/" + props.item._id}>
-                        <div className="btn-plus">
-                            <img className="img-plus" src={require("../../assets/plus-6-64.png")} alt="Like Flag unset" />
-                        </div>
-                    </Link>
-
+                    { props.isOpen ?
+                        <Link to={"/city/" + props.item.cityId}>
+                            <div className="btn-plus">
+                                <img className="img-plus" src={require("../../assets/minus-blue-01.png")} alt="Like Flag unset" />
+                            </div>
+                        </Link>
+                    :
+                        <Link to={"/itinerary/" + props.item._id}>
+                            <div className="btn-plus">
+                                <img className="img-plus" src={require("../../assets/plus-6-64.png")} alt="Like Flag unset" />
+                            </div>
+                        </Link>
+                    }
                     <div className="flex-col flex-wrap content-end h-full">
                         <div className="mt-2 mb-1 text-gray-800 truncate"> 
                             {props.item.title}  

@@ -44,7 +44,7 @@ const CreateAcountPage = () => {
                     console.log("THE NAME:", theData)
                     submitMessage = '';
                     setSubmitting(true);
-                    axios.post('http://localhost:5000/users/create', theData)
+                    axios.post('/users/create', theData)
                     .then(res => {
                         const newUser = res.data;
                         dispatch(signIn(newUser));

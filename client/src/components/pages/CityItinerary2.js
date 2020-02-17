@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getItActivities } from "../../store/actions/itinerariesActions"
 import ItineraryBox from "../layouts/ItineraryFull2"
+import CitySlide from "../layouts/CitySlide";
 
 import Card from 'react-bootstrap/Card'
 import PropTypes from 'prop-types'
@@ -33,23 +34,11 @@ class CityItinerary extends Component  {
         )
       } else {
           return (
-             <div className="bg-gray-200 h-full p-8 items-center justify-center">
-                 <div className="relative ">
-                    <img 
-                        className="w-full object-cover rounded shadow-md"
-                        style={{ height: '25%' }}
-                        src={ city.img } alt="City Pic"/>
-                 </div>
-                <div className="relative px-4">
-                    <div className="bg-gray-100 h-12 p-3 -mt-4 flex content-center justify-center rounded shadow-lg">
-                        <h4 className="text-blue-600 font-semibold text-lg leading-tight truncate">
-                            { city.name }
-                        </h4>
-                    </div>
+             <div className="flex flex-wrap h-full w-full p-8 items-center justify-center">
+                <div>
+                  <CitySlide city={ city } />                  
                 </div>
-                <div className="flex flex-wrap overflow-scroll h-full w-full bg-gray-200">
-                    <ItineraryBox item={itinerary} deviceType={ this.props.deviceType } activities={this.props.activities || []}/>
-                </div>
+                <ItineraryBox item={itinerary} deviceType={ this.props.deviceType } activities={this.props.activities || []}/>
                 <Link
                     className="relative inline-block text-center underline text-blue-700 mt-4 cursor-pointer z-index-20" 
                     to={"/city/" + this.props.cityId}

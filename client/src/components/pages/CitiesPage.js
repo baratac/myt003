@@ -41,7 +41,7 @@ function CitiesPage(props) {
               value={srchCity}
               onChange={updateCityList}/>
         </div>
-        <div  className="xpto flex flex-wrap justify-around content-center m-1 px-2 overflow-scroll w-full">
+        <div  className="flex flex-wrap justify-around content-center m-1 px-2 overflow-scroll w-full">
              {cityList.map((item) => (<CityEntry item={item} key = { item._id } />))}
         </div>
       </div>
