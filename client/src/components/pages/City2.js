@@ -31,12 +31,12 @@ class City extends Component  {
       } else {
           return (
             <div>
-              <div className="flex flex-row sm:flex-col flex-wrap h-full w-full p-8 items-center sm:items-start justify-center ">
+              <div className="flex flex-row  sm:flex-col flex-wrap h-full w-full p-8 items-center justify-center ">
                   <div>
                     <CitySlide city={city} />
                   </div>
                   <div className="h-full w-full flex flex-wrap sm:items-center sm:justify-around ">
-                    {itis.map((item) => (<ItineraryBox item={item} isOpen={ false }key = { item._id } />))}
+                    {itis.map((item) => (<ItineraryBox item={item} isOpen={ false } key = { item._id } />))}
                   </div>
               </div>
               <Link

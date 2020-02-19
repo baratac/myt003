@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getItActivities } from "../../store/actions/itinerariesActions"
-import ItineraryBox from "../layouts/ItineraryFull2"
+import ItineraryBox from "../layouts/Itinerary"
 import CitySlide from "../layouts/CitySlide";
+import ActivityCarrousel from '../layouts/ActivityCarrousel'
+import Comments from "../layouts/Comments"
 
-import Card from 'react-bootstrap/Card'
 import PropTypes from 'prop-types'
 
 
@@ -34,24 +35,41 @@ class CityItinerary extends Component  {
         )
       } else {
           return (
-             <div className="flex flex-wrap h-full w-full p-8 items-center justify-center">
-                <div>
-                  <CitySlide city={ city } />                  
+            <div>
+                <div className="flex flex-wrap w-full h-full sm:h-1/2 sm:mb-4">
+                  <div className="flex flex-wrap h-full w-full sm:w-1/2 p-8 sm:p-2 items-center justify-center content-center sm:content-start">
+                    <div className="w-full flex justify-center"> <CitySlide city={ city } /> </div>
+                    <div className="w-full sm:h-2/10">
+                        <ItineraryBox item={itinerary} isOpen={true} deviceType={ this.props.deviceType } cityId={this.props.cityId} activities={this.props.activities || []}/>
+                    </div>
+                  </div>
+                  <div className="hidden sm:block flex flex-wrap h-full sm:h-1/2 w-full sm:w-1/2 p-8 sm:p-2 sm:-mr-2 sm:border sm:border-gray-400 items-center justify-center overflow-scroll">
+                      <Comments itId={ itinerary._id } />
+                  </div>
                 </div>
-                <ItineraryBox item={itinerary} deviceType={ this.props.deviceType } activities={this.props.activities || []}/>
-                <Link
-                    className="relative inline-block text-center underline text-blue-700 mt-4 cursor-pointer z-index-20" 
-                    to={"/city/" + this.props.cityId}
-                >
-                    Go Back
-                </Link>
+                <div className="border-t-2 border-dashed border-indigo-600">
+                  <ActivityCarrousel deviceType={ this.props.deviceType } activities={this.props.activities || []}/>
+                </div>
+                <div className="sm:hidden flex flex-wrap h-full sm:h-1/2 w-full sm:w-1/2 p-8 sm:p-2 sm:-mr-2 sm:border sm:border-gray-400 items-center justify-center overflow-scroll">
+                      <Comments itId={ itinerary._id } />
+                 </div>
             </div>
+
           )
       }
     }
    
 }
 
+/*
+
+                <Link
+                  className="relative inline-block text-center underline text-blue-700 mt-4 cursor-pointer z-index-20" 
+                  to={"/city/" + this.props.cityId}
+                >
+                  Go Back
+                </Link>
+*/
 CityItinerary.propTypes = {
   sites: PropTypes.array,
   getItActivities: PropTypes.func.isRequired,

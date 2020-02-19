@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, withRouter, Redirect} from 'react-route
 import PropTypes from 'prop-types'
 import JavascriptTimeAgo from 'javascript-time-ago'
 import { deviceDetect, deviceType } from 'react-device-detect';
- 
+import windowSize from 'react-window-size'
+
 // The desired locales.
 import en from 'javascript-time-ago/locale/en'
 import pt from 'javascript-time-ago/locale/pt'
@@ -68,7 +69,9 @@ class App extends Component {
     });
   }
 
-  render () {    console.log('Rendering APP Environment', process.env.NODE_ENV);
+  render () {    
+    console.log('Rendering APP Environment', process.env.NODE_ENV);
+    console.log('App on Viewport Width: ', window.innerWidth)
     return (
       <Router>
         { this.state.reloading ? <Redirect to="/" /> : 

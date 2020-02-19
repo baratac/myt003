@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useHistory, Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom'
+import windowSize from 'react-window-size'
 
 import { signOut } from '../../store/actions/usersActions'
 
 const hideBlock = "hidden";
 const showBlock = "block flex-grow";
 
-export default function TopNavMenu() {
+export default function TopNavMenu(props) {
    //const history = useHistory();
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.users.currentUser);
@@ -101,6 +102,7 @@ export default function TopNavMenu() {
         }
     }
 
+    console.log("TOP MENU Width:", window.innerWidth)
 
     return (
         <div className="mb-2">
@@ -123,7 +125,7 @@ export default function TopNavMenu() {
                         { menuShow() }
                     </div>
                 </div>
-                <div className={ mainMenu ? showBlock : hideBlock }>
+                <div className={ mainMenu & window.innerWidth < 640 ? showBlock : hideBlock }>
                     <div className="text-lg sm:flex-grow sm:items-end">
                         { menuShow() }
                     </div>

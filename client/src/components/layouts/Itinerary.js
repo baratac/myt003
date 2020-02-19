@@ -72,7 +72,7 @@ function ItineraryBox (props) {
     }
 
     return (
-        <div className="relative w-full sm:w-5/12 h-20 block border rounded mx-4 mt-4">
+        <div className="relative w-full max-w-sm h-20 block border rounded mx-4 mt-4 sm:mt-8 mx-auto">
             <div className="flex flex-wrap  rounded-lg shadow-lg">
                 <div className="w-1/4 h-20 border  p-2 mx-auto">
                     <div className="flex flex-col justify-center shadow-xl">
@@ -82,7 +82,7 @@ function ItineraryBox (props) {
                 </div>
                 <div className="relative w-3/4 pl-2 text-left h-20 border-2 overflow-scroll">
                     <button
-                        onClick={ toogleLike }
+                        onClick={ props.isOpen ? null : toogleLike }
                         className="btn-like"
                     >
                         { likeImage() }

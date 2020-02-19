@@ -2,11 +2,10 @@ import React from 'react'
 
 export default function CitySlide(props) {
     return (
-        <div className="w-full sm:w-1/2 sm:mx-auto">
+        <div className="w-full max-w-sm sm:max-w-md sm:mx-auto">
             <div className="relative ">
                 <img 
-                    className="w-full object-cover rounded shadow-md"
-                    style={{ height: '25vh' }}
+                    className="w-full object-cover rounded shadow-md h-1/4"
                     src={ props.city.img } 
                     alt="City Pic"
                 />

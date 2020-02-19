@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Carousel from "react-multi-carousel";
 import Comments from "./Comments"
-import "react-multi-carousel/lib/styles.css";
+
 import ItineraryBox from './Itinerary'
-import ActivityItem from './ActivityItem'
+import ActivityCarrousel from './ActivityCarrousel'
 import './layout.css'
 
 const responsive = {
@@ -29,71 +28,21 @@ const responsive = {
   };
 
 function ItineraryFull (props) {
-    const [isMoving, setMove] = useState(false);
 
-    function bChange(nextSlide, { currentSlide, onMove }) {
-        console.log("Before change", nextSlide, currentSlide, onMove);
-        setMove(true);
-    }
-
-    function aChange(previousSlide, { currentSlide, onMove }) {
-        setMove(false);
-        console.log("After change", previousSlide, currentSlide, onMove);
-    }
-
-    function activityClick(e) {
-        if (isMoving) {
-            e.preventDefault();
-        }
-        // To remove after creation of activity page
-        e.preventDefault();
-    }
- 
-    let theList = props.activities.map((item) => (<ActivityItem item={item} key = { item._id } />))
     // console.log("THE LIST:", theList);
 
     return (
         <div className="flex flex-wrap h-full w-full">
             <ItineraryBox item={ props.item } isOpen={ true } />
-            <div className=" relative w-full mt-2 ">
-                { theList.length > 0 ? 
-                    <Carousel 
-                        beforeChange={bChange}
-                        afterChange={aChange}
-                        swipeable={true}
-                        centerMode={true}
-                        draggable={true}
-                        showDots={false}
-                        responsive={responsive}
-                        ssr={true}
-                        infinite={true}
-                        keyBoardControl={true}
-                        customTransition="transform 500ms ease-in-out"
-                        autoPlay={false}
-                        autoPlaySpeed={5000}
-                        transitionDuration={2500}
-                        containerClass="-mx-8 max-w-6xl border border-black"
-                        removeArrowOnDeviceType={ ['tablet', 'mobile'] }
-                        deviceType={props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px"
-                    >  
-                        {
-                            props.activities.map((item) => 
-                            (<Link key = { item._id } 
-                                to={"/activity/" + item._id}
-                                onClick={activityClick}
-                                className="relative block ml-1 p-2 h-24 sm:h-40 border border-gray-300 "
-                            >
-                                <img src={ item.img } className="h-full w-full object-fit shadow-xl" alt="City Favorite"/>
-                                <div class="absolute mx-4 inset-x-0 bottom-0 h-5 pb-2 rounded opacity-1 bg-gray-700 text-white">
-                                    {item.name}
-                                </div>
-                            </Link>
-                            )) }
-                    </Carousel>
-                    : null}
+            <div className=" relative w-full h-full mt-2 sm:hidden">
+                <ActivityCarrousel deviceType={ props.deviceType } activities={props.activities} />
                 <Comments itId={ props.item._id } />
+                <Link
+                    className="relative inline-block text-center underline text-blue-700 mt-4 cursor-pointer z-index-20" 
+                    to={"/city/" + props.cityId}
+                >
+                    Go Back
+                </Link>
             </div>
         </div>
     

@@ -49,7 +49,7 @@ export default function CommentItem(props) {
                 <textarea 
                 readOnly={!edit}
                 value={ comment }
-                className="form-control" 
+                className="w-full form-control" 
                 rows="2"
                 onSelect={editMode}
                 onBlur={lockMode}
@@ -58,7 +58,7 @@ export default function CommentItem(props) {
             </div>
             <div className="small"> 
                 <Button 
-                  className="float-left" 
+                  className="float-left text-blue-600" 
                   size="sm"
                   onClick={updateComment}
                   variant="link"
@@ -66,7 +66,7 @@ export default function CommentItem(props) {
                   Update
                 </Button>
                 <Button 
-                    className="float-right" 
+                    className="float-right text-blue-600" 
                     size="sm"
                     onClick={deleteComment}
                     variant="link"

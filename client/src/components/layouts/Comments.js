@@ -101,9 +101,9 @@ export default function Comments(props) {
 
     return (
         <div className="relative w-full">
-            <div className="flex flex-wrap justify-start items-center">
-                <div className="w-11/12 p-2">
-                    <label class="block">
+            <div className="flex flex-wrap justify-start items-center border border-green-400">
+                <div className="w-11/12">
+                    <label className="block">
                             <textarea 
                                 className="form-textarea resize-none mt-1 block w-full" 
                                 rows="3"
@@ -124,7 +124,7 @@ export default function Comments(props) {
                 </div>
             </div>
             {commentList.length > 0 ? commentList.map(( item, index ) => (
-                <div className="toast-comment show fade" key={index}>
+                <div className="toast-comment show fade mt-2" key={index}>
                     <div className="toast-comment-header">
                         <img src={item.userPic} className="rounded mr-2 img-comment" alt="" />
                         <strong className="mr-auto">{item.userName}</strong>
@@ -155,17 +155,3 @@ const arrowBtnStyle = {
     borderRadius: '20%',
     cursor: 'pointer',
   };
-
-  /*
-
-                      <Form className="w-full h-full">
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Control 
-                                as="textarea" 
-                                rows={ commentSize }
-                                value={ comment }
-                                onChange={ commentUpdate }
-                                placeholder="Drop a comment..." />
-                        </Form.Group>
-                    </Form>
-*/
