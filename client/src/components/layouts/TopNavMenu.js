@@ -30,14 +30,14 @@ export default function TopNavMenu(props) {
           } else {
             return (
                 <div className="border-gray-200 border rounded-full overflow-hidden">
-                    <img className="w-10 h-10" src={require("../../assets/user-blue-02.png")} alt="User" />
+                    <img className="w-10 h-10" src={require("../../assets/user-gray-02.png")} alt="User" />
                 </div>
             );
           }
         } else {
            return (
                 <div className="border border-red-200 rounded-full overflow-hidden">
-                    <img className="w-10 h-10" src={require("../../assets/user-red-02.png")} alt="User" />
+                    <img className="w-10 h-10" src={require("../../assets/user-white-01.png")} alt="User" />
                 </div>
             );
         }                 

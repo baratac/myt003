@@ -85,7 +85,7 @@ export default function Comments(props) {
             comList => {
                 comList.data.forEach(item => {
                     if (item.userPic.length === 0) {
-                        item.userPic = require("../../assets/user-red-02.png");
+                        item.userPic = require("../../assets/user-gray-01.png");
                     }
                     // console.log("Comments Axios Response")
                 })
